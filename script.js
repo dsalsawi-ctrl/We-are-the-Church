@@ -9,7 +9,7 @@ const houseData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Populate House Churches
+    // Render House Grid
     const grid = document.getElementById('house-grid');
     if(grid) {
         grid.innerHTML = houseData.map(h => `
@@ -21,39 +21,56 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // Scroll Effect
-    window.onscroll = () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    // Scroll Effects
+    window.onscroll = () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    };
 
-    // Mobile Menu
+    // UI Controls
     document.getElementById('menu-btn').onclick = () => document.getElementById('mobile-overlay').classList.add('open');
     document.getElementById('close-btn').onclick = () => document.getElementById('mobile-overlay').classList.remove('open');
 
-    // Form logic
+    // Form Logic
     const joinForm = document.getElementById('platinumJoinForm');
     if(joinForm) {
         joinForm.onsubmit = async (e) => {
             e.preventDefault();
             const btn = joinForm.querySelector('button');
-            btn.innerText = "SENDING...";
+            btn.innerText = "AUTHENTICATING...";
+            btn.disabled = true;
             try {
                 const data = Object.fromEntries(new FormData(joinForm).entries());
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
                 document.getElementById('success-modal').classList.add('active');
                 joinForm.reset();
-            } catch (err) { btn.innerText = "RETRY"; }
+            } catch (err) { 
+                btn.innerText = "RETRY"; 
+                btn.disabled = false;
+            }
         };
     }
 });
 
 function navigateTo(targetId, navElement = null) {
     document.getElementById('mobile-overlay').classList.remove('open');
-    document.querySelectorAll('.spa-section').forEach(s => s.classList.remove('active'));
-    document.getElementById(targetId).classList.add('active');
     
+    // Hard switch: Hide all, Show one
+    document.querySelectorAll('.spa-section').forEach(s => {
+        s.classList.remove('active');
+        s.style.display = 'none';
+    });
+    
+    const target = document.getElementById(targetId);
+    if(target) {
+        target.classList.add('active');
+        target.style.display = 'block';
+    }
+
+    // Nav active states
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     if (navElement) navElement.classList.add('active');
     
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeSuccessModal() {
