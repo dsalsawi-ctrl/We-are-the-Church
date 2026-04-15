@@ -6,7 +6,7 @@
   <title>We Are The Church | Addis Ababa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,63 +15,78 @@
     <div class="nav-container">
       <div class="logo font-serif">WE ARE THE CHURCH</div>
       
-      <div class="desktop-links">
-        <button onclick="showSection('home',this)" class="active-nav">Our Vision</button>
-        <button onclick="showSection('houses',this)">House Churches</button>
-        <button onclick="showSection('join',this)">Join</button>
-        <button onclick="showSection('contact',this)">Contact Us</button>
+      <div class="desktop-menu">
+        <button onclick="navigateTo('home', this)" class="nav-btn active">Our Vision</button>
+        <button onclick="navigateTo('houses', this)" class="nav-btn">House Churches</button>
+        <button onclick="navigateTo('join', this)" class="nav-btn">Join</button>
+        <button onclick="navigateTo('contact', this)" class="nav-btn">Contact Us</button>
       </div>
 
-      <button id="menu-btn" class="mobile-menu-trigger"><i data-lucide="menu"></i></button>
+      <button id="menu-btn" class="mobile-ui-btn"><i data-lucide="menu"></i></button>
     </div>
   </nav>
 
   <div id="mobile-overlay" class="mobile-nav-overlay">
-    <button id="close-btn" class="close-trigger"><i data-lucide="x"></i></button>
-    <div class="mobile-links">
-        <button onclick="showSection('home')">Our Vision</button>
-        <button onclick="showSection('houses')">House Churches</button>
-        <button onclick="showSection('join')">Join</button>
-        <button onclick="showSection('contact')">Contact Us</button>
+    <button id="close-btn" class="close-ui-btn"><i data-lucide="x"></i></button>
+    <div class="mobile-nav-content">
+        <button onclick="navigateTo('home')">Our Vision</button>
+        <button onclick="navigateTo('houses')">House Churches</button>
+        <button onclick="navigateTo('join')">Join</button>
+        <button onclick="navigateTo('contact')">Contact Us</button>
     </div>
   </div>
 
-  <main>
-    <section id="home" class="page active hero-wrap">
-      <div class="hero-img" style="background-image: url('hero-family.jpg');"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>One Family <br><span class="italic font-light">in Christ.</span></h1>
-        <p>A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.</p>
-        <button onclick="showSection('join')" class="platinum-btn text-xs">Connect With Us</button>
+  <main id="spa-container">
+    <section id="home" class="spa-section active">
+      <div class="hero-box">
+        <div class="hero-image" style="background-image: url('hero-family.jpg');"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-content">
+          <div class="content-reveal">
+            <h1>One Family <br><span class="italic font-light">in Christ.</span></h1>
+            <p>A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.</p>
+            <button onclick="navigateTo('join')" class="cta-platinum">Connect With Us</button>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="join" class="page py-20 bg-white">
-      <div class="max-w-xl mx-auto px-6" id="join-form-container">
-        <div id="input-layer">
-            <h2 class="font-serif text-3xl md:text-4xl mb-2 text-center">Join a Family</h2>
-            <p class="text-gray-400 mb-10 text-xs tracking-widest uppercase text-center">Addis Ababa Neighborhoods</p>
-            <form id="joinForm" class="space-y-6">
-              <div class="input-field"><input type="text" name="name" required placeholder="Full Name"></div>
-              <div class="input-field"><input type="tel" name="phone" required placeholder="Phone Number"></div>
-              <div class="input-field">
+    <section id="houses" class="spa-section py-32">
+        <div class="max-w-6xl mx-auto px-8 text-center">
+            <h2 class="font-serif text-4xl mb-12">House Churches</h2>
+            <div id="house-grid" class="grid md:grid-cols-3 gap-12">
+                </div>
+        </div>
+    </section>
+
+    <section id="join" class="spa-section py-32 bg-white">
+      <div class="max-w-xl mx-auto px-8">
+        <div id="form-ui-container">
+          <div id="form-inputs">
+            <h2 class="font-serif text-4xl mb-4 text-center">Join a Family</h2>
+            <p class="text-gray-400 mb-12 text-[10px] tracking-[0.4em] uppercase text-center">Addis Ababa Neighborhoods</p>
+            <form id="platinumJoinForm" class="space-y-10">
+              <div class="input-row"><input type="text" name="name" required placeholder="Full Name"></div>
+              <div class="input-row"><input type="tel" name="phone" required placeholder="Phone Number"></div>
+              <div class="input-row">
                 <select name="location" required>
-                  <option value="" disabled selected>Select Neighborhood</option>
-                  <option value="Bole">Bole (Atlas/Medhanialem)</option>
+                  <option value="" disabled selected>Neighborhood</option>
+                  <option value="Bole">Bole (Atlas / Medhanialem)</option>
                   <option value="Sarbet">Sarbet / Old Airport</option>
                   <option value="CMC">CMC / Ayat / Summit</option>
                   <option value="Kazanchis">Kazanchis / 22</option>
                   <option value="Lebu">Lebu / Mekanisa</option>
                 </select>
               </div>
-              <button type="submit" class="submit-action">Request Invitation</button>
+              <button type="submit" class="form-submit-btn">Request Invitation</button>
             </form>
-        </div>
-        <div id="success-layer" class="hidden text-center scale-95 opacity-0 transition-all duration-500">
-            <i data-lucide="check" class="mx-auto text-[#A39171] mb-6 p-4 border border-[#A39171] rounded-full" size="48"></i>
-            <h3 class="font-serif text-2xl mb-4">Welcome Home.</h3>
-            <p class="text-gray-500 text-sm">Your request is in. A local leader will reach out shortly.</p>
+          </div>
+          
+          <div id="form-success" class="hidden text-center scale-90 opacity-0 transition-all duration-1000">
+            <i data-lucide="check" class="mx-auto text-[#A39171] mb-8 p-6 border border-[#A39171] rounded-full" size="64"></i>
+            <h3 class="font-serif text-3xl mb-4">Welcome Home.</h3>
+            <p class="text-gray-500">Your request has been received. A leader will reach out shortly.</p>
+          </div>
         </div>
       </div>
     </section>
