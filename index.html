@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Are The Church | Addis Ababa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-earth text-gray-900 font-sans antialiased">
 
+  <nav>
+    <div class="nav-container">
+      <div class="logo font-serif">WE ARE THE CHURCH.</div>
+      <button id="menu-toggle" class="mobile-toggle"><i data-lucide="menu"></i></button>
+      <div id="nav-links" class="nav-links uppercase tracking-widest text-xs font-bold">
+        <button onclick="showSection('home',this)" class="active">Vision</button>
+        <button onclick="showSection('houses',this)">House Churches</button>
+        <button onclick="showSection('join',this)">Join</button>
+        <button onclick="showSection('contact',this)">Contact Us</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main-content">
+    <section id="home" class="section-container active-section hero-container">
+      <div class="hero-bg-layer"></div>
+      <div class="hero-overlay-layer"></div>
+      <div class="hero-content-layer">
+        <div class="hero-text-box">
+            <h4 class="uppercase tracking-[0.3em] text-xs mb-2 opacity-80">Our Vision</h4>
+            <h1 class="font-serif text-5xl md:text-6xl font-bold mb-6">One Family in Christ.</h1>
+            <p class="max-w-md text-sm md:text-base mb-8 leading-relaxed opacity-90">
+                We aren't a building. We are a real community of modern believers choosing depth over hype, gathering in homes, built on the only foundation that lasts.
+            </p>
+            <button onclick="showSection('houses')" class="cta-btn">Find a House Church</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="houses" class="section-container py-32 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-16">
+            <h2 class="font-serif text-4xl mb-4">Active Gatherings</h2>
+            <div class="w-12 h-1 bg-gray-900 mx-auto mb-8"></div>
+            <p class="text-gray-600 italic font-serif">"Breaking bread from house to house..."</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto" id="house-grid">
+            </div>
+    </section>
+
+    <section id="join" class="section-container py-32 bg-white">
+        <div class="max-w-xl mx-auto px-6">
+            <div class="form-card shadow-2xl p-10">
+                <h2 class="font-serif text-3xl mb-2">Join a Family near you</h2>
+                <p class="text-gray-500 mb-8 text-sm">Tell us where you are in Addis, and we'll connect you.</p>
+                <form id="joinForm" class="space-y-6">
+                    <input type="hidden" name="type" value="JOINING">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required class="floating-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required class="floating-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Neighborhood (Addis Ababa)</label>
+                        <select name="location" class="floating-input custom-select">
+                            <option value="Bole">Bole (Atlas/Rwanda/Medhanialem)</option>
+                            <option value="Sarbet">Sarbet / Old Airport</option>
+                            <option value="CMC">CMC / Ayat / Summit</option>
+                            <option value="Kazanchis">Kazanchis / 22</option>
+                            <option value="Mekanisa">Mekanisa / Lebu / Jemo</option>
+                            <option value="Gullele">Gullele / Piassa</option>
+                            <option value="Other">Other Neighborhood</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn w-full">Connect Me</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-container py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-4xl mb-12">Get in Touch</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="text-left space-y-6">
+                    <h3 class="font-serif text-2xl">Want to Host?</h3>
+                    <p class="text-gray-600">If you have a heart for hospitality and a living room in Addis, we’d love to help you start a gathering.</p>
+                    <button onclick="openHostModal()" class="border-2 border-gray-900 px-6 py-3 uppercase tracking-widest text-xs font-bold hover:bg-gray-900 hover:text-white transition">Open My Home</button>
+                </div>
+                <div class="text-left">
+                   <form id="contactForm" class="space-y-4">
+                        <input type="hidden" name="type" value="MESSAGE">
+                        <input type="email" name="email" placeholder="Email" class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-gray-900">
+                        <textarea name="message" placeholder="Your Message" rows="4" class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-gray-900"></textarea>
+                        <button type="submit" class="font-bold uppercase tracking-widest text-xs mt-4">Send Message —></button>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
