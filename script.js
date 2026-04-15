@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDmayoxktaa9fZVoOMcpPW2RiGVEYf3likom7mnaPqDVUhIiHePBAU1Hz5MtCuz2e2Dw/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXN83dMherOdsXTr8iXcjwGTdCSU6upb7V4RIXheLFXYJntSu2tCl2I7q5sqv4MJkt/exec';
 
 // HOUSE CHURCH DATA
 const activeHouses = [
