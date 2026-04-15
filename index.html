@@ -14,14 +14,12 @@
   <nav id="navbar">
     <div class="nav-container">
       <div class="logo font-serif">WE ARE THE CHURCH</div>
-      
       <div class="desktop-menu">
         <button onclick="navigateTo('home', this)" class="nav-btn active">Our Vision</button>
         <button onclick="navigateTo('houses', this)" class="nav-btn">House Churches</button>
         <button onclick="navigateTo('join', this)" class="nav-btn">Join</button>
         <button onclick="navigateTo('contact', this)" class="nav-btn">Contact Us</button>
       </div>
-
       <button id="menu-btn" class="mobile-ui-btn"><i data-lucide="menu"></i></button>
     </div>
   </nav>
@@ -52,30 +50,27 @@
     <section id="houses" class="spa-section py-32 bg-white">
         <div class="max-w-6xl mx-auto px-8">
             <div class="text-center mb-20">
-                <h2 class="font-serif text-5xl mb-4">Active Families</h2>
-                <p class="text-[#A39171] tracking-[.4em] text-[10px] font-bold uppercase">Addis Ababa Network</p>
+                <h2 class="font-serif text-5xl mb-4">House Churches</h2>
+                <p class="text-[#A39171] tracking-[.4em] text-[10px] font-bold uppercase">Active Families in Addis</p>
             </div>
-            <div id="house-grid" class="grid md:grid-cols-3 gap-8">
-                </div>
+            <div id="house-grid" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
     <section id="join" class="spa-section py-32">
       <div class="max-w-xl mx-auto px-8">
-        <div id="form-ui-container" class="bg-white p-12 shadow-sm border border-gray-100">
-            <h2 class="font-serif text-4xl mb-4 text-center">Join a Family</h2>
-            <p class="text-gray-400 mb-12 text-[10px] tracking-[0.4em] uppercase text-center">Request an invitation</p>
+        <div class="bg-white p-12 shadow-sm border border-gray-100">
+            <h2 class="font-serif text-4xl mb-10 text-center">Join a Family</h2>
             <form id="platinumJoinForm" class="space-y-10">
               <div class="input-row"><input type="text" name="name" required placeholder="Full Name"></div>
               <div class="input-row"><input type="tel" name="phone" required placeholder="Phone Number"></div>
               <div class="input-row">
                 <select name="location" required>
                   <option value="" disabled selected>Select Neighborhood</option>
-                  <option value="Bole">Bole (Atlas / Medhanialem)</option>
-                  <option value="Sarbet">Sarbet / Old Airport</option>
-                  <option value="CMC">CMC / Ayat / Summit</option>
-                  <option value="Kazanchis">Kazanchis / 22</option>
-                  <option value="Lebu">Lebu / Mekanisa</option>
+                  <option value="Bole">Bole</option>
+                  <option value="Sarbet">Sarbet</option>
+                  <option value="CMC">CMC</option>
+                  <option value="Kazanchis">Kazanchis</option>
                 </select>
               </div>
               <button type="submit" class="form-submit-btn">Send Request</button>
@@ -86,22 +81,17 @@
 
     <section id="contact" class="spa-section py-32 bg-white">
         <div class="max-w-4xl mx-auto px-8">
-            <div class="grid md:grid-cols-2 gap-20 items-center">
+            <div class="grid md:grid-cols-2 gap-20">
                 <div>
-                    <h2 class="font-serif text-5xl mb-6">Let's Talk.</h2>
-                    <p class="text-gray-500 mb-8 leading-relaxed">Whether you are looking for a house church or interested in hosting a gathering in your own home, we are here to walk with you.</p>
-                    <div class="space-y-4 text-sm font-bold tracking-widest uppercase">
-                        <p class="flex items-center gap-4"><i data-lucide="mail" size="16" class="text-[#A39171]"></i> hello@wearethechurch.com</p>
-                        <p class="flex items-center gap-4"><i data-lucide="map-pin" size="16" class="text-[#A39171]"></i> Addis Ababa, Ethiopia</p>
-                    </div>
+                    <h2 class="font-serif text-5xl mb-6">Contact Us</h2>
+                    <p class="text-gray-500 mb-8">Have questions about our house churches or want to start a gathering in your home?</p>
+                    <p class="text-xs font-bold tracking-widest uppercase text-[#A39171]">Email: hello@wearethechurch.com</p>
                 </div>
-                <div class="bg-[#FAFAFA] p-10 border border-gray-100">
-                    <form class="space-y-6">
-                        <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none">
-                        <textarea placeholder="Your Message" rows="4" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none"></textarea>
-                        <button class="text-[10px] font-bold tracking-[.3em] uppercase border-b-2 border-black pb-2">Send Message</button>
-                    </form>
-                </div>
+                <form class="space-y-6">
+                    <input type="email" placeholder="Email Address" class="w-full border-b border-gray-200 py-4 outline-none">
+                    <textarea placeholder="Your Message" rows="4" class="w-full border-b border-gray-200 py-4 outline-none"></textarea>
+                    <button class="text-[10px] font-bold tracking-[.3em] uppercase border-b-2 border-black pb-2">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
