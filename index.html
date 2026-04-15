@@ -27,10 +27,10 @@
   <div id="mobile-overlay" class="mobile-nav-overlay">
     <button id="close-btn" class="close-ui-btn"><i data-lucide="x"></i></button>
     <div class="mobile-nav-content">
-        <button onclick="navigateTo('home')">Our Vision</button>
-        <button onclick="navigateTo('houses')">House Churches</button>
-        <button onclick="navigateTo('join')">Join</button>
-        <button onclick="navigateTo('contact')">Contact Us</button>
+        <button onclick="navigateTo('home')">OUR VISION</button>
+        <button onclick="navigateTo('houses')">HOUSE CHURCHES</button>
+        <button onclick="navigateTo('join')">JOIN THE FAMILY</button>
+        <button onclick="navigateTo('contact')">CONTACT US</button>
     </div>
   </div>
 
@@ -51,13 +51,13 @@
         <div class="max-w-6xl mx-auto px-8">
             <div class="text-center mb-20">
                 <h2 class="font-serif text-5xl mb-4">House Churches</h2>
-                <p class="text-[#A39171] tracking-[.4em] text-[10px] font-bold uppercase">Active Gatherings</p>
+                <p class="text-[#A39171] tracking-[.4em] text-[10px] font-bold uppercase">Active Gatherings in Addis</p>
             </div>
             <div id="house-grid" class="grid md:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
-    <section id="join" class="spa-section py-32">
+    <section id="join" class="spa-section py-32 bg-[#FAFAFA]">
       <div class="max-w-xl mx-auto px-8">
         <div class="bg-white p-12 shadow-sm border border-gray-100">
             <h2 class="font-serif text-4xl mb-10 text-center">Join a Family</h2>
@@ -84,12 +84,15 @@
             <div class="grid md:grid-cols-2 gap-20">
                 <div>
                     <h2 class="font-serif text-5xl mb-6">Contact Us</h2>
-                    <p class="text-gray-500 mb-8">Questions about gatherings or starting a home church?</p>
-                    <p class="text-xs font-bold tracking-widest uppercase text-[#A39171]">Email: hello@wearethechurch.com</p>
+                    <p class="text-gray-500 mb-8 leading-relaxed">Have questions about our house churches or want to start a gathering in your home? Reach out to our team.</p>
+                    <div class="space-y-4">
+                        <p class="flex items-center gap-4 text-xs font-bold tracking-widest uppercase text-[#A39171]"><i data-lucide="mail" size="16"></i> hello@wearethechurch.com</p>
+                        <p class="flex items-center gap-4 text-xs font-bold tracking-widest uppercase text-[#A39171]"><i data-lucide="map-pin" size="16"></i> Addis Ababa, Ethiopia</p>
+                    </div>
                 </div>
                 <form class="space-y-6">
-                    <input type="email" placeholder="Email Address" class="w-full border-b border-gray-200 py-4 outline-none">
-                    <textarea placeholder="Your Message" rows="4" class="w-full border-b border-gray-200 py-4 outline-none"></textarea>
+                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none">
+                    <textarea placeholder="Your Message" rows="4" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none"></textarea>
                     <button class="text-[10px] font-bold tracking-[.3em] uppercase border-b-2 border-black pb-2">Send Message</button>
                 </form>
             </div>
@@ -99,10 +102,10 @@
 
   <div id="success-modal" class="modal-overlay">
     <div class="success-card">
-        <div class="card-icon"><i data-lucide="check" size="32"></i></div>
-        <h3 class="font-serif text-3xl mb-4 text-black">Welcome Home</h3>
-        <p class="text-gray-500 mb-8">A host will contact you soon.</p>
-        <button onclick="closeSuccessModal()" class="modal-okay-btn">Okay</button>
+        <div class="card-icon"><i data-lucide="check" size="40"></i></div>
+        <h3 class="font-serif text-3xl mb-4 italic">Welcome Home</h3>
+        <p class="text-gray-500 mb-10 leading-relaxed">Your request has been received.<br>A host will contact you soon.</p>
+        <button onclick="closeSuccessModal()" class="modal-okay-btn">Return to Vision</button>
     </div>
   </div>
 
