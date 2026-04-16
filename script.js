@@ -52,27 +52,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function navigateTo(targetId, navElement = null) {
+    // 1. Close mobile menu
     document.getElementById('mobile-overlay').classList.remove('open');
-    
-    // Hard switch: Hide all, Show one
+
+    // 2. Clear all sections completely
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
-        s.style.display = 'none';
+        s.style.display = 'none'; // Physical removal from flow
     });
-    
+
+    // 3. Activate target
     const target = document.getElementById(targetId);
-    if(target) {
+    if (target) {
         target.classList.add('active');
         target.style.display = 'block';
     }
 
-    // Nav active states
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    if (navElement) navElement.classList.add('active');
-    
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    // 4. Reset scroll instantly
+    window.scrollTo(0, 0);
 }
 
+// Success Card Control
 function closeSuccessModal() {
     document.getElementById('success-modal').classList.remove('active');
     navigateTo('home');
