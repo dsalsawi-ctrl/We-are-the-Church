@@ -100,16 +100,14 @@
     </section>
   </main>
 
-  <div id="success-modal" class="modal-overlay">
-    <div class="success-card">
-        <div class="card-icon"><i data-lucide="check" size="40"></i></div>
+ <div id="success-modal" class="modal-overlay">
+    <div class="success-card bg-white p-12 text-center shadow-2xl">
+        <div class="mb-6 flex justify-center text-[#A39171]"><i data-lucide="check-circle" size="48"></i></div>
         <h3 class="font-serif text-3xl mb-4 italic">Welcome Home</h3>
-        <p class="text-gray-500 mb-10 leading-relaxed">Your request has been received.<br>A host will contact you soon.</p>
-        <button onclick="closeSuccessModal()" class="modal-okay-btn">Return to Vision</button>
+        <p class="text-gray-500 mb-8">A host will contact you soon.</p>
+        <button onclick="closeSuccessModal()" class="w-full bg-black text-white py-5 text-[10px] font-bold uppercase tracking-[.3em]">Okay</button>
     </div>
   </div>
 
   <script src="script.js"></script>
-  <script>lucide.createIcons();</script>
 </body>
-</html>
