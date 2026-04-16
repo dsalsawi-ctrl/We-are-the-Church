@@ -42,6 +42,7 @@ nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px
 .hero-image { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; transform: scale(1.05); animation: slowZoom 20s ease-out infinite alternate; }
 .hero-vignette { 
     position: absolute; inset: 0; z-index: 2; 
+    /* This gradient will now uniformly apply to BOTH desktop and mobile */
     background: linear-gradient(90deg, var(--alabaster) 25%, rgba(250,250,250,0) 100%);
 }
 .hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
@@ -93,14 +94,11 @@ nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px
 @media (max-width: 1024px) {
     .desktop-menu { display: none; }
     .mobile-ui-btn { display: block; }
-    /* Kept the universal layout for mobile hero, just adjusting text sizes & gradients */
-    .hero-vignette { background: linear-gradient(90deg, var(--alabaster) 45%, rgba(250,250,250,0.3) 100%); }
     .hero-content { padding: 0 30px; }
     .hero-content h1 { font-size: 4.5rem; }
 }
 
 @media (max-width: 768px) {
-    .hero-vignette { background: linear-gradient(90deg, rgba(250,250,250,0.95) 45%, rgba(250,250,250,0.4) 100%); }
     .hero-content h1 { font-size: 3.5rem; }
     nav { padding: 25px 0; }
     .nav-container { padding: 0 25px; }
