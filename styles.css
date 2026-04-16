@@ -120,3 +120,30 @@ nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px
         background-position: 65% center;
     }
 }
+
+/* THE GHOST MODAL KILLER */
+.modal-overlay {
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(10px);
+    z-index: 99999; 
+    /* Use display: none to completely remove it from the page flow */
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    opacity: 0; 
+    transition: opacity 0.4s var(--ease);
+}
+
+/* This class is only added by JavaScript when the form is successful */
+.modal-overlay.active { 
+    display: flex; 
+    opacity: 1; 
+}
+
+/* Ensure the card inside doesn't cause layout shifts */
+.success-card {
+    position: relative;
+    z-index: 100000;
+}
