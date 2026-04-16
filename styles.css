@@ -47,7 +47,7 @@ nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px
 }
 .hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
 .hero-content h1 { font-size: 6rem; line-height: 0.95; font-weight: 800; margin-bottom: 25px; color: var(--onyx); }
-.hero-content p { max-width: 450px; color: #555; font-size: 1.1rem; margin-bottom: 45px; line-height: 1.8; font-weight: 300; }
+.hero-content p { max-width: 450px; color: #282828; font-size: 1.1rem; margin-bottom: 45px; line-height: 1.8; font-weight: 300; }
 .cta-platinum { background: var(--onyx); color: white; padding: 22px 45px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
 
 @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
