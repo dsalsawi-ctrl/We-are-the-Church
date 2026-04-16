@@ -6,14 +6,14 @@
   <title>We Are The Church | Addis Ababa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <nav id="navbar">
     <div class="nav-container">
-      <div class="logo font-serif">WE ARE THE CHURCH</div>
+      <div class="logo font-serif text-xl tracking-wide">WE ARE THE CHURCH</div>
       <div class="desktop-menu">
         <button onclick="navigateTo('home', this)" class="nav-btn active">Our Vision</button>
         <button onclick="navigateTo('houses', this)" class="nav-btn">House Churches</button>
@@ -39,75 +39,102 @@
       <div class="hero-box">
         <div class="hero-image" style="background-image: url('hero-family.jpg');"></div>
         <div class="hero-vignette"></div>
-        <div class="hero-content">
+        <div class="hero-content fade-in-el">
           <h1>One Family <br><span class="italic font-light">in Christ.</span></h1>
           <p>A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.</p>
-          <button onclick="navigateTo('join')" class="cta-platinum">Connect With Us</button>
+          <button onclick="navigateTo('join')" class="cta-platinum relative overflow-hidden group">
+            <span class="relative z-10">Connect With Us</span>
+            <div class="absolute inset-0 bg-[#A39171] transform scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
+          </button>
         </div>
       </div>
     </section>
 
     <section id="houses" class="spa-section py-32 bg-white">
         <div class="max-w-6xl mx-auto px-8">
-            <div class="text-center mb-20">
-                <h2 class="font-serif text-5xl mb-4">House Churches</h2>
+            <div class="text-center mb-20 fade-in-el">
+                <h2 class="font-serif text-5xl mb-4 text-[#0A0A0A]">House Churches</h2>
                 <p class="text-[#A39171] tracking-[.4em] text-[10px] font-bold uppercase">Active Gatherings in Addis</p>
             </div>
-            <div id="house-grid" class="grid md:grid-cols-3 gap-8"></div>
+            <div id="house-grid" class="grid md:grid-cols-3 gap-12"></div>
         </div>
     </section>
 
     <section id="join" class="spa-section py-32 bg-[#FAFAFA]">
-      <div class="max-w-xl mx-auto px-8">
-        <div class="bg-white p-12 shadow-sm border border-gray-100">
-            <h2 class="font-serif text-4xl mb-10 text-center">Join a Family</h2>
-            <form id="platinumJoinForm" class="space-y-10">
-              <div class="input-row"><input type="text" name="name" required placeholder="Full Name"></div>
-              <div class="input-row"><input type="tel" name="phone" required placeholder="Phone Number"></div>
+      <div class="max-w-2xl mx-auto px-8">
+        <div class="bg-white p-12 md:p-16 shadow-2xl border border-gray-50 fade-in-el">
+            <h2 class="font-serif text-4xl mb-2 text-center text-[#0A0A0A]">Join a Family</h2>
+            <p class="text-center text-gray-400 text-sm mb-12">Take the next step in finding your community.</p>
+            
+            <form id="platinumJoinForm" class="space-y-8">
               <div class="input-row">
-                <select name="location" required>
-                  <option value="" disabled selected>Select Neighborhood</option>
+                <input type="text" name="name" id="name" required placeholder=" ">
+                <label for="name">Full Name</label>
+              </div>
+              <div class="input-row">
+                <input type="tel" name="phone" id="phone" required placeholder=" ">
+                <label for="phone">Phone Number</label>
+              </div>
+              <div class="input-row select-row">
+                <select name="location" id="location" required>
+                  <option value="" disabled selected></option>
                   <option value="Bole">Bole</option>
                   <option value="Sarbet">Sarbet</option>
                   <option value="CMC">CMC</option>
                   <option value="Kazanchis">Kazanchis</option>
                 </select>
+                <label for="location">Select Neighborhood</label>
+                <i data-lucide="chevron-down" class="absolute right-0 top-4 text-gray-400 pointer-events-none"></i>
               </div>
-              <button type="submit" class="form-submit-btn">Send Request</button>
+              <button type="submit" class="form-submit-btn mt-12">Send Request</button>
             </form>
         </div>
       </div>
     </section>
 
     <section id="contact" class="spa-section py-32 bg-white">
-        <div class="max-w-4xl mx-auto px-8">
-            <div class="grid md:grid-cols-2 gap-20">
+        <div class="max-w-5xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-20 items-center fade-in-el">
                 <div>
-                    <h2 class="font-serif text-5xl mb-6">Contact Us</h2>
-                    <p class="text-gray-500 mb-8 leading-relaxed">Have questions about our house churches or want to start a gathering in your home? Reach out to our team.</p>
-                    <div class="space-y-4">
-                        <p class="flex items-center gap-4 text-xs font-bold tracking-widest uppercase text-[#A39171]"><i data-lucide="mail" size="16"></i> hello@wearethechurch.com</p>
-                        <p class="flex items-center gap-4 text-xs font-bold tracking-widest uppercase text-[#A39171]"><i data-lucide="map-pin" size="16"></i> Addis Ababa, Ethiopia</p>
+                    <h2 class="font-serif text-5xl mb-6 text-[#0A0A0A]">Contact Us</h2>
+                    <p class="text-gray-500 mb-10 leading-relaxed font-light">Have questions about our house churches or want to start a gathering in your home? Reach out to our team.</p>
+                    <div class="space-y-6">
+                        <p class="flex items-center gap-4 text-xs font-bold tracking-[.2em] uppercase text-[#A39171]">
+                          <i data-lucide="mail" size="18" stroke-width="1.5"></i> hello@wearethechurch.com
+                        </p>
+                        <p class="flex items-center gap-4 text-xs font-bold tracking-[.2em] uppercase text-[#A39171]">
+                          <i data-lucide="map-pin" size="18" stroke-width="1.5"></i> Addis Ababa, Ethiopia
+                        </p>
                     </div>
                 </div>
-                <form class="space-y-6">
-                    <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none">
-                    <textarea placeholder="Your Message" rows="4" class="w-full bg-transparent border-b border-gray-200 py-4 outline-none"></textarea>
-                    <button class="text-[10px] font-bold tracking-[.3em] uppercase border-b-2 border-black pb-2">Send Message</button>
-                </form>
+                <div class="bg-[#FAFAFA] p-10 border border-gray-100">
+                  <form class="space-y-8">
+                      <div class="input-row">
+                        <input type="email" id="contactEmail" required placeholder=" ">
+                        <label for="contactEmail">Email Address</label>
+                      </div>
+                      <div class="input-row">
+                        <textarea id="contactMessage" rows="4" required placeholder=" "></textarea>
+                        <label for="contactMessage">Your Message</label>
+                      </div>
+                      <button class="text-[11px] font-bold tracking-[.3em] uppercase border-b-2 border-black pb-2 hover:text-[#A39171] hover:border-[#A39171] transition-colors duration-300">Submit</button>
+                  </form>
+                </div>
             </div>
         </div>
     </section>
   </main>
 
  <div id="success-modal" class="modal-overlay">
-    <div class="success-card bg-white p-12 text-center shadow-2xl">
-        <div class="mb-6 flex justify-center text-[#A39171]"><i data-lucide="check-circle" size="48"></i></div>
-        <h3 class="font-serif text-3xl mb-4 italic">Welcome Home</h3>
-        <p class="text-gray-500 mb-8">A host will contact you soon.</p>
-        <button onclick="closeSuccessModal()" class="w-full bg-black text-white py-5 text-[10px] font-bold uppercase tracking-[.3em]">Okay</button>
+    <div class="success-card bg-white p-14 text-center shadow-2xl max-w-sm w-full mx-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-[#A39171]"></div>
+        <div class="mb-6 flex justify-center text-[#A39171]"><i data-lucide="check-circle" size="56" stroke-width="1.5"></i></div>
+        <h3 class="font-serif text-3xl mb-4 italic text-[#0A0A0A]">Welcome Home</h3>
+        <p class="text-gray-500 mb-10 font-light text-sm">A host will contact you soon.</p>
+        <button onclick="closeSuccessModal()" class="w-full bg-black hover:bg-[#A39171] transition-colors duration-300 text-white py-5 text-[10px] font-bold uppercase tracking-[.3em]">Okay</button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
+</html>
