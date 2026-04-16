@@ -94,20 +94,29 @@ nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px
 @media (max-width: 1024px) {
     .desktop-menu { display: none; }
     .mobile-ui-btn { display: block; }
+    
+    /* Reveal more of the image by shifting the gradient start */
+    .hero-vignette { 
+        background: linear-gradient(90deg, var(--alabaster) 15%, rgba(250,250,250,0) 80%); 
+    }
+    
     .hero-content { padding: 0 30px; }
     .hero-content h1 { font-size: 4.5rem; }
 }
 
 @media (max-width: 768px) {
+    /* On small phones, push the gradient even further left to show the faces */
+    .hero-vignette { 
+        background: linear-gradient(90deg, var(--alabaster) 5%, rgba(250,250,250,0.2) 70%, rgba(250,250,250,0) 100%); 
+    }
+
     .hero-content h1 { font-size: 3.5rem; }
     nav { padding: 25px 0; }
     .nav-container { padding: 0 25px; }
-    .hero-content p { font-size: 1rem; }
+    .hero-content p { font-size: 1rem; max-width: 300px; } /* Slimmer text block to show more photo */
+    
+    /* Ensure the background image stays centered so faces aren't lost */
+    .hero-image {
+        background-position: 65% center;
+    }
 }
-
-/* THE GHOST MODAL KILLER */
-.modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
-    z-index: 99999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease;
-}
-.modal-overlay.active { display: flex; opacity: 1; }
