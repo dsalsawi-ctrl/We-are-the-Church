@@ -91,16 +91,13 @@ function navigateTo(targetId, navElement = null) {
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
-        
-        // Reset fade-in elements inside the section so they animate again
-        s.querySelectorAll('.fade-in-el').forEach(el => el.classList.remove('visible'));
+        // FIX: Removed the line here that was resetting the .visible class and causing the blank screen!
     });
 
     // Show target section
     const target = document.getElementById(targetId);
     if (target) {
         target.style.display = 'block';
-        // Slight delay to allow display:block to render before triggering opacity animation
         setTimeout(() => {
             target.classList.add('active');
         }, 10);
