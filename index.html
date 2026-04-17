@@ -13,7 +13,7 @@
 
   <nav id="navbar">
     <div class="nav-container">
-      <div class="logo font-serif text-xl tracking-[0.2em] uppercase font-bold text-[var(--charcoal)]"></div>
+      <div class="logo font-serif text-xl tracking-[0.2em] uppercase font-bold text-[var(--charcoal)]">WE ARE THE CHURCH</div>
       <div class="desktop-menu">
         <button onclick="navigateTo('home', this)" class="nav-btn active">The Vision</button>
         <button onclick="navigateTo('houses', this)" class="nav-btn">House Churches</button>
@@ -40,12 +40,12 @@
         <div class="hero-image" style="background-image: url('hero-family.jpg');"></div>
         <div class="hero-vignette"></div>
         
-        <div class="hero-content fade-in-el">
-          <h1 class="massive-title font-serif uppercase tracking-tighter text-[var(--charcoal)]">
+        <div class="hero-content">
+          <h1 class="massive-title font-serif uppercase tracking-tighter text-[var(--charcoal)] fade-in-el">
             We Are<br>The Church.
           </h1>
 
-          <div class="bottom-plane">
+          <div class="bottom-plane fade-in-el">
             <p class="font-serif italic text-[var(--gold)] text-2xl md:text-3xl mb-4">One family in Christ.</p>
             <p class="hero-desc text-[var(--charcoal)] opacity-80 mb-8">
               A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.
@@ -59,33 +59,23 @@
     <section id="houses" class="spa-section py-32 px-10">
         <div class="max-w-6xl mx-auto">
             <h2 class="font-serif text-6xl mb-16 italic">Our Houses</h2>
-            <div id="house-grid" class="grid md:grid-cols-3 gap-10">
-                </div>
+            <div id="house-grid" class="grid md:grid-cols-3 gap-10"></div>
         </div>
     </section>
 
     <section id="join" class="spa-section py-32 px-10 bg-[var(--charcoal)] text-[var(--bone)]">
         <div class="max-w-4xl mx-auto">
             <h2 class="font-serif text-6xl mb-6 italic">Join The Family</h2>
-            <p class="text-[var(--gold)] mb-16 tracking-widest uppercase text-sm font-bold">Submit your admin code: "The Platinum, the mighty CODE!"</p>
-            
+            <p class="text-[var(--gold)] mb-16 tracking-widest uppercase text-sm font-bold">Admin Code: "The Platinum, the mighty CODE!"</p>
             <form id="platinumJoinForm" class="space-y-12">
                 <div class="grid md:grid-cols-2 gap-10">
-                    <div class="input-group">
-                        <input type="text" name="name" required placeholder="Full Name">
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" required placeholder="Email Address">
-                    </div>
+                    <div class="input-group"><input type="text" name="name" required placeholder="Full Name"></div>
+                    <div class="input-group"><input type="email" name="email" required placeholder="Email Address"></div>
                 </div>
                 <div class="input-group">
                     <select name="neighborhood" required>
                         <option value="" disabled selected>Preferred Neighborhood</option>
-                        <option>Bole Atlas</option>
-                        <option>Sarbet</option>
-                        <option>CMC</option>
-                        <option>Kazanchis</option>
-                        <option>Old Airport</option>
+                        <option>Bole Atlas</option><option>Sarbet</option><option>CMC</option><option>Kazanchis</option><option>Old Airport</option>
                     </select>
                 </div>
                 <button type="submit" class="w-full py-6 border border-[var(--gold)] text-[var(--gold)] uppercase tracking-[0.4em] font-bold hover:bg-[var(--gold)] hover:text-[var(--charcoal)] transition-all">Submit Entry</button>
@@ -98,12 +88,10 @@
             <div class="grid md:grid-cols-2 gap-20">
                 <div>
                     <h2 class="font-serif text-6xl mb-8 italic">Contact</h2>
-                    <p class="text-xl opacity-60 mb-12">Reach out to learn more about our vision or how to host a gathering.</p>
-                    <div class="space-y-4">
-                        <p class="flex items-center gap-4 text-[var(--gold)] font-bold uppercase tracking-widest text-xs">
-                          <i data-lucide="mail" size="18"></i> hello@wearethechurch.com
-                        </p>
-                    </div>
+                    <p class="text-xl opacity-60 mb-12">Reach out to learn more about our vision.</p>
+                    <p class="flex items-center gap-4 text-[var(--gold)] font-bold uppercase tracking-widest text-xs">
+                        <i data-lucide="mail" size="18"></i> hello@wearethechurch.com
+                    </p>
                 </div>
                 <form class="space-y-8">
                     <input type="text" placeholder="Subject" class="w-full bg-transparent border-b border-black/10 py-4 outline-none">
@@ -120,7 +108,7 @@
   </div>
 
   <div id="success-modal" class="modal-overlay">
-    <div class="success-card bg-[var(--bone)] p-14 text-center relative">
+    <div class="success-card bg-[var(--bone)] p-14 text-center">
         <div class="mb-6 flex justify-center text-[var(--gold)]"><i data-lucide="check-circle" size="56"></i></div>
         <h3 class="font-serif text-4xl mb-4 italic">Welcome Home</h3>
         <p class="text-gray-500 mb-10 text-sm">A host will contact you shortly.</p>
