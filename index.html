@@ -13,11 +13,15 @@
 
   <nav id="navbar">
     <div class="nav-container">
-      <div class="logo font-serif text-xl tracking-[0.2em] uppercase font-bold text-[var(--charcoal)]">WATC</div>
+      <div class="logo flex flex-col justify-center">
+        <span class="font-serif text-lg md:text-xl tracking-[0.05em] uppercase font-bold text-[var(--charcoal)] leading-tight">We Are The Church</span>
+        <span class="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-gray-500 mt-1 font-sans font-medium">One Family In Christ</span>
+      </div>
+      
       <div class="desktop-menu">
         <button onclick="navigateTo('home', this)" class="nav-btn active">The Vision</button>
         <button onclick="navigateTo('houses', this)" class="nav-btn">House Churches</button>
-        <button onclick="navigateTo('join', this)" class="nav-btn">Request Invitation</button>
+        <button onclick="navigateTo('join', this)" class="nav-btn">Join A Gathering</button>
         <button onclick="navigateTo('contact', this)" class="nav-btn">Contact Us</button>
       </div>
       <button id="menu-btn" class="mobile-ui-btn"><i data-lucide="menu"></i></button>
@@ -30,7 +34,7 @@
         <p class="text-[var(--gold)] text-[10px] tracking-[0.4em] uppercase font-bold mb-8">Menu</p>
         <button onclick="navigateTo('home')">The Vision</button>
         <button onclick="navigateTo('houses')">Gatherings</button>
-        <button onclick="navigateTo('join')">The Invitation</button>
+        <button onclick="navigateTo('join')">Join Us</button>
         <button onclick="navigateTo('contact')">Reach Out</button>
         <div class="mt-16 space-y-2">
             <p class="text-[var(--bone)] text-[9px] tracking-[0.2em] uppercase opacity-50">Addis Ababa, Ethiopia</p>
@@ -45,12 +49,10 @@
         <div class="hero-image" style="background-image: url('hero-family.jpg');"></div>
         <div class="hero-vignette"></div>
         <div class="hero-content fade-in-el">
-          <p class="font-serif italic text-[var(--gold)] text-xl md:text-2xl mb-4">One family in Christ.</p>
-          <h1 class="font-serif massive-title uppercase tracking-tighter text-[var(--charcoal)]">We Are<br>The Church.</h1>
-          <p class="hero-desc text-[var(--charcoal)] opacity-80">A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.</p>
+          <p class="hero-desc text-[var(--charcoal)] font-serif italic text-2xl md:text-4xl leading-relaxed max-w-3xl">A real community of believers choosing depth over hype. Building God's kingdom in homes, centered on the Cornerstone.</p>
           
-          <button onclick="navigateTo('join')" class="cta-platinum hidden md:inline-block relative overflow-hidden group mt-4">
-            <span class="relative z-10">Request An Invitation</span>
+          <button onclick="navigateTo('join')" class="cta-platinum hidden md:inline-block relative overflow-hidden group mt-8">
+            <span class="relative z-10">Join A Gathering</span>
             <div class="absolute inset-0 bg-[var(--gold)] transform scale-x-0 origin-left transition-transform duration-500 ease-out group-hover:scale-x-100 z-0"></div>
           </button>
         </div>
@@ -71,7 +73,7 @@
       <div class="max-w-2xl mx-auto px-8">
         <div class="bg-[var(--charcoal)] p-12 md:p-16 shadow-2xl fade-in-el relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1 bg-[var(--gold)]"></div>
-            <h2 class="font-serif text-5xl mb-4 text-center text-[var(--bone)]">The Secret Table</h2>
+            <h2 class="font-serif text-5xl mb-4 text-center text-[var(--bone)]">Join The Table</h2>
             <p class="text-center text-[var(--gold)] tracking-[0.2em] text-[10px] uppercase font-bold mb-16">Take the next step in finding your community.</p>
             
             <form id="platinumJoinForm" class="space-y-10">
@@ -94,7 +96,7 @@
                 <label for="location">Select Neighborhood</label>
                 <i data-lucide="chevron-down" class="absolute right-0 top-4 text-[var(--gold)] pointer-events-none"></i>
               </div>
-              <button type="submit" class="form-submit-btn mt-16 text-[var(--charcoal)] bg-[var(--gold)] hover:bg-[var(--bone)]">Request Invitation</button>
+              <button type="submit" class="form-submit-btn mt-16 text-[var(--charcoal)] bg-[var(--gold)] hover:bg-[var(--bone)]">Submit Request</button>
             </form>
         </div>
       </div>
@@ -134,7 +136,7 @@
   </main>
 
   <div id="mobile-sticky-cta" class="md:hidden fixed bottom-0 left-0 w-full z-40 bg-[var(--charcoal)] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] fade-in-el">
-      <button onclick="navigateTo('join')" class="w-full py-6 text-[var(--gold)] text-[11px] font-bold tracking-[0.4em] uppercase transition-colors active:bg-[var(--gold)] active:text-[var(--charcoal)]">Request Invitation</button>
+      <button onclick="navigateTo('join')" class="w-full py-6 text-[var(--gold)] text-[11px] font-bold tracking-[0.4em] uppercase transition-colors active:bg-[var(--gold)] active:text-[var(--charcoal)]">Join A Gathering</button>
   </div>
 
   <div id="success-modal" class="modal-overlay">
