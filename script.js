@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="house-card fade-in-el" style="transition-delay: ${i * 100}ms">
                 <h3 class="font-serif text-3xl mb-2 text-[var(--charcoal)]">${h.neighborhood}</h3>
                 <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
-                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Request Visit</button>
+                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Join Gathering</button>
             </div>
         `).join('');
     }
@@ -95,7 +95,6 @@ function navigateTo(targetId, navElement = null) {
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
-        // Note: Intentionally left the visible classes intact per your working code constraints
     });
 
     // 5. Show target section instantly
