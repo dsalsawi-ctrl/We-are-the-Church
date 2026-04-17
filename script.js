@@ -14,17 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if(grid) {
         grid.innerHTML = houseData.map((h, i) => `
             <div class="house-card fade-in-el" style="transition-delay: ${i * 100}ms">
-                <h3 class="font-serif text-2xl mb-2 text-[#0A0A0A]">${h.neighborhood}</h3>
+                <h3 class="font-serif text-3xl mb-2 text-[var(--charcoal)]">${h.neighborhood}</h3>
                 <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
-                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-black pb-1">Request Visit</button>
+                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Request Visit</button>
             </div>
         `).join('');
     }
 
-    // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Scroll Effects & Intersection Observer for Fade-ins
+    // Scroll Effects
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -70,15 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function navigateTo(targetId, navElement = null) {
-    // Close mobile menu immediately
+    // 1. Close mobile menu
     document.getElementById('mobile-overlay').classList.remove('open');
 
-    // Update Desktop Nav Active States
+    // 2. Hide Mobile Sticky CTA if they are on the Join page (to avoid double buttons)
+    const stickyCta = document.getElementById('mobile-sticky-cta');
+    if (stickyCta) {
+        stickyCta.style.display = (targetId === 'join') ? 'none' : 'block';
+    }
+
+    // 3. Update Desktop Nav Active States
     if (navElement && navElement.classList.contains('nav-btn')) {
         document.querySelectorAll('.desktop-menu .nav-btn').forEach(btn => btn.classList.remove('active'));
         navElement.classList.add('active');
     } else {
-        // If navigated from mobile menu or internal buttons, update desktop nav anyway
         document.querySelectorAll('.desktop-menu .nav-btn').forEach(btn => {
             btn.classList.remove('active');
             if(btn.innerText.toLowerCase().includes(targetId) || (targetId === 'home' && btn.innerText.includes('Vision'))) {
@@ -87,14 +91,14 @@ function navigateTo(targetId, navElement = null) {
         });
     }
 
-    // Hide all sections
+    // 4. Hard-hide all sections
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
-        // FIX: Removed the line here that was resetting the .visible class and causing the blank screen!
+        // Note: Intentionally left the visible classes intact per your working code constraints
     });
 
-    // Show target section
+    // 5. Show target section instantly
     const target = document.getElementById(targetId);
     if (target) {
         target.style.display = 'block';
@@ -103,10 +107,11 @@ function navigateTo(targetId, navElement = null) {
         }, 10);
     }
 
-    // Force scroll to top
+    // 6. Force scroll to top
     window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeSuccessModal() {
     document.getElementById('success-modal').classList.remove('active');
+    navigateTo('home');
 }
