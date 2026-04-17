@@ -1,127 +1,73 @@
 :root {
-    --bone: #F7F5F0;     /* The warm heritage background */
-    --charcoal: #1C1B1A; /* Deep, grounded black */
-    --gold: #C29B57;     /* High-end burnished gold accent */
+    --bone: #F7F5F0;
+    --charcoal: #1C1B1A;
+    --gold: #C29B57;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', sans-serif; background: var(--bone); color: var(--charcoal); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-/* TYPOGRAPHY OVERRIDE */
 .font-serif { font-family: 'Cormorant Garamond', serif; }
 
 /* SPA ENGINE */
 .spa-section { display: none; min-height: 100vh; width: 100%; }
 .spa-section.active { display: block; animation: sectionFade 0.7s var(--ease); }
-@keyframes sectionFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sectionFade { from { opacity: 0; } to { opacity: 1; } }
 
 /* NAVIGATION */
 nav { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 35px 0; transition: 0.5s var(--ease); }
 nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-.nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; padding: 0 40px; align-items: center; }
-.desktop-menu .nav-btn { margin-left: 45px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em; font-weight: 700; color: #888; transition: color 0.3s ease; }
-.desktop-menu .nav-btn:hover { color: var(--gold); }
-.desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 1px solid var(--gold); padding-bottom: 4px; }
-.mobile-ui-btn { display: none; background: none; border: none; cursor: pointer; color: var(--charcoal); }
+.nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; padding: 0 50px; align-items: center; }
+.nav-btn { background: none; border: none; cursor: pointer; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; margin-left: 40px; opacity: 0.4; transition: 0.3s; }
+.nav-btn.active, .nav-btn:hover { opacity: 1; }
+.mobile-ui-btn { display: none; background: none; border: none; color: var(--charcoal); }
 
-/* MOBILE MENU "LIFE" - Dark Mode Immersion */
-.mobile-nav-overlay {
-    position: fixed; inset: 0; background: rgba(28, 27, 26, 0.98); 
-    backdrop-filter: blur(25px); z-index: 9999;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    transform: translateY(-100%); transition: 0.7s var(--ease);
-}
-.mobile-nav-overlay.open { transform: translateY(0); }
-.close-ui-btn { position: absolute; top: 40px; right: 40px; color: var(--bone); background: transparent; border: none; cursor: pointer; }
-.mobile-nav-content button {
-    display: block; font-size: 14px; font-weight: 800; letter-spacing: 0.5em;
-    margin: 25px auto; color: var(--gold); text-transform: uppercase; transition: color 0.3s ease;
-}
-.mobile-nav-content button:active, .mobile-nav-content button:hover { color: var(--bone); }
+/* HERO LAYOUT */
+.hero-box { position: relative; height: 100vh; width: 100%; overflow: hidden; }
+.hero-image { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; }
+.hero-vignette { position: absolute; inset: 0; background: linear-gradient(90deg, var(--bone) 20%, rgba(247,245,240,0) 60%); z-index: 2; }
+.hero-content { position: relative; z-index: 10; height: 100%; max-width: 1400px; margin: auto; padding: 0 50px; display: flex; flex-direction: column; justify-content: center; }
+.massive-title { font-size: 7rem; line-height: 0.85; margin-bottom: 2rem; }
+.hero-desc { max-width: 450px; line-height: 1.8; font-size: 1.1rem; }
 
-/* VISION SECTION - UNIVERSAL LAYOUT */
-.hero-box { height: 100vh; height: 100dvh; position: relative; display: flex; align-items: center; overflow: hidden; background: var(--bone); }
-.hero-image { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; transform: scale(1.05); animation: slowZoom 25s ease-out infinite alternate; }
-.hero-vignette { 
-    position: absolute; inset: 0; z-index: 2; 
-    background: linear-gradient(90deg, var(--bone) 25%, rgba(247,245,240,0) 100%);
-}
-.hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
-.massive-title { font-size: clamp(4.5rem, 8vw, 8rem); line-height: 0.85; margin-bottom: 25px; }
-.hero-desc { font-size: clamp(1.05rem, 1.5vw, 1.25rem); max-width: 480px; line-height: 1.8; font-weight: 300; }
-.cta-platinum { background: var(--charcoal); color: var(--bone); padding: 24px 48px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
-
-@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-
-/* FORM "LIFE" & FLOATING LABELS */
-.input-row { position: relative; width: 100%; }
-.input-row input, .input-row textarea, .input-row select {
-    width: 100%; padding: 12px 0; font-size: 15px; color: var(--charcoal);
-    background: transparent; border: none; border-bottom: 1px solid #D1CDC4;
-    outline: none; transition: all 0.3s var(--ease); box-shadow: none; border-radius: 0;
-    -webkit-appearance: none;
-}
-.input-row textarea { resize: none; }
-.input-row label {
-    position: absolute; left: 0; top: 12px; color: #999; font-size: 15px;
-    pointer-events: none; transition: all 0.3s var(--ease); font-weight: 300;
-}
-.input-row input:focus, .input-row textarea:focus, .input-row select:focus {
-    border-bottom-color: var(--gold);
-}
-.input-row input:focus ~ label, .input-row input:not(:placeholder-shown) ~ label,
-.input-row textarea:focus ~ label, .input-row textarea:not(:placeholder-shown) ~ label,
-.select-row select:valid ~ label, .select-row select:focus ~ label {
-    top: -16px; font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
-}
-
-/* THE SECRET TABLE (DARK MODE INPUTS) */
-.dark-mode-input input, .dark-mode-input select { color: var(--bone) !important; border-bottom-color: #333 !important; }
-.dark-mode-input label { color: #666 !important; }
-.dark-mode-input input:focus, .dark-mode-input select:focus { border-bottom-color: var(--gold) !important; }
-.dark-mode-input input:focus ~ label, .dark-mode-input input:not(:placeholder-shown) ~ label,
-.dark-mode-input select:valid ~ label, .dark-mode-input select:focus ~ label { color: var(--gold) !important; }
-
-.form-submit-btn {
-    width: 100%; padding: 24px; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none;
-    cursor: pointer; transition: background 0.4s var(--ease), color 0.4s;
-}
-
-/* HOUSE CARDS */
-.house-card { padding: 45px 40px; background: white; border: 1px solid #EBE7E0; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
-.house-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: var(--gold); }
-.house-card button { color: var(--charcoal); transition: color 0.3s, border-color 0.3s; }
-.house-card:hover button { color: var(--gold); border-color: var(--gold); }
-
-/* SCROLL FADE IN UTILITY */
-.fade-in-el { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-.fade-in-el.visible { opacity: 1; transform: translateY(0); }
-
-/* MOBILE RESPONSIVE OVERHAUL - THUMB FIRST */
+/* MOBILE RESPONSIVE OVERHAUL */
 @media (max-width: 1024px) {
     .desktop-menu { display: none; }
     .mobile-ui-btn { display: block; }
     
-    .hero-box { display: flex; flex-direction: column; justify-content: flex-end; height: 100dvh; background: var(--bone); }
-    .hero-image { position: absolute; top: 0; height: 60vh; width: 100%; z-index: 1; background-position: center 20%; animation: none; }
+    .hero-box { display: flex; flex-direction: column; height: 100dvh; }
+    .hero-image { position: absolute; top: 0; height: 60vh; width: 100%; z-index: 1; }
     
-    /* Elegant fade into the bottom text */
-    .hero-vignette { background: linear-gradient(180deg, rgba(247,245,240,0) 0%, rgba(247,245,240,0) 45%, rgba(247,245,240,1) 60%); }
+    /* Elegant fade into the bottom text plane */
+    .hero-vignette { 
+        background: linear-gradient(180deg, rgba(247,245,240,0) 0%, rgba(247,245,240,0) 45%, rgba(247,245,240,1) 65%); 
+        z-index: 2;
+    }
     
-    .hero-content { padding: 0 30px 120px 30px; text-align: left; }
-    .massive-title { font-size: 4.2rem; line-height: 0.9; margin-bottom: 15px; }
-    .hero-desc { font-size: 1rem; color: #555; }
-    nav { padding: 25px 0; }
-    .nav-container { padding: 0 25px; }
+    .hero-content { 
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        padding: 100px 30px 140px 30px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Title Top / Text Bottom */
+    }
+
+    /* WE ARE THE CHURCH - Top Left */
+    .massive-title { font-size: 3.8rem; margin: 0; text-align: left; }
+
+    /* ONE FAMILY / DESC - Bottom Plane */
+    .bottom-plane { margin-top: auto; }
+    .hero-desc { font-size: 0.95rem; max-width: 100%; }
 }
 
-/* THE GHOST MODAL KILLER */
-.modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
-    z-index: 99999; display: none; align-items: center; justify-content: center; 
-    opacity: 0; transition: opacity 0.4s var(--ease);
-}
-.modal-overlay.active { display: flex; opacity: 1; }
-.success-card { position: relative; z-index: 100000; }
+/* MODALS & OVERLAYS */
+.mobile-nav-overlay { position: fixed; inset: 0; background: var(--bone); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: translateY(-100%); transition: 0.5s var(--ease); }
+.mobile-nav-overlay.open { transform: translateY(0); }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.active { display: flex; }
+
+/* FORMS */
+.input-group input, .input-group select { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 20px 0; color: inherit; outline: none; font-size: 1rem; }
+#join .input-group input { border-bottom-color: rgba(255,255,255,0.1); }
