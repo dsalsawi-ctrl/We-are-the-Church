@@ -9,109 +9,91 @@ const houseData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Render House Grid
-    const grid = document.getElementById('house-grid');
-    if(grid) {
-        grid.innerHTML = houseData.map((h, i) => `
-            <div class="house-card fade-in-el" style="transition-delay: ${i * 100}ms">
-                <h3 class="font-serif text-3xl mb-2 text-[var(--charcoal)]">${h.neighborhood}</h3>
-                <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
-                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Request Visit</button>
-            </div>
-        `).join('');
-    }
-
     lucide.createIcons();
+    renderHouses();
 
-    // Scroll Effects
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
+    // Scroll effect for Navbar
+    window.onscroll = () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    };
 
-    document.querySelectorAll('.fade-in-el').forEach(el => observer.observe(el));
-
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    // UI Controls
+    // Mobile Menu Toggle
     document.getElementById('menu-btn').onclick = () => document.getElementById('mobile-overlay').classList.add('open');
     document.getElementById('close-btn').onclick = () => document.getElementById('mobile-overlay').classList.remove('open');
 
-    // Form Logic
+    // Form submission
     const joinForm = document.getElementById('platinumJoinForm');
-    if(joinForm) {
+    if (joinForm) {
         joinForm.onsubmit = async (e) => {
             e.preventDefault();
-            const btn = joinForm.querySelector('.form-submit-btn');
+            const btn = joinForm.querySelector('button');
             const originalText = btn.innerText;
-            btn.innerText = "AUTHENTICATING...";
+            btn.innerText = "SENDING...";
             btn.disabled = true;
+
             try {
                 const data = Object.fromEntries(new FormData(joinForm).entries());
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
                 document.getElementById('success-modal').classList.add('active');
                 joinForm.reset();
-            } catch (err) { 
-                btn.innerText = "RETRY"; 
+            } catch (err) {
+                btn.innerText = "RETRY";
+                btn.disabled = false;
             } finally {
-                setTimeout(() => {
-                    btn.disabled = false;
-                    if(btn.innerText === "AUTHENTICATING...") btn.innerText = originalText;
-                }, 2000);
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         };
     }
 });
 
+function renderHouses() {
+    const grid = document.getElementById('house-grid');
+    if (grid) {
+        grid.innerHTML = houseData.map(h => `
+            <div class="house-card p-10 border border-black/5 bg-white/50">
+                <h3 class="font-serif text-3xl mb-2">${h.neighborhood}</h3>
+                <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
+                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-black pb-1">Join The Family</button>
+            </div>
+        `).join('');
+    }
+}
+
 function navigateTo(targetId, navElement = null) {
-    // 1. Close mobile menu
     document.getElementById('mobile-overlay').classList.remove('open');
 
-    // 2. Hide Mobile Sticky CTA if they are on the Join page (to avoid double buttons)
+    // Sticky CTA logic
     const stickyCta = document.getElementById('mobile-sticky-cta');
     if (stickyCta) {
         stickyCta.style.display = (targetId === 'join') ? 'none' : 'block';
     }
 
-    // 3. Update Desktop Nav Active States
-    if (navElement && navElement.classList.contains('nav-btn')) {
-        document.querySelectorAll('.desktop-menu .nav-btn').forEach(btn => btn.classList.remove('active'));
-        navElement.classList.add('active');
-    } else {
-        document.querySelectorAll('.desktop-menu .nav-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.innerText.toLowerCase().includes(targetId) || (targetId === 'home' && btn.innerText.includes('Vision'))) {
-                btn.classList.add('active');
-            }
-        });
-    }
-
-    // 4. Hard-hide all sections
-    document.querySelectorAll('.spa-section').forEach(s => {
-        s.classList.remove('active');
-        s.style.display = 'none'; 
-        // Note: Intentionally left the visible classes intact per your working code constraints
+    // Nav active states
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.toLowerCase().includes(targetId) || 
+           (targetId === 'home' && btn.innerText.includes('Vision')) ||
+           (targetId === 'join' && btn.innerText.includes('Family'))) {
+            btn.classList.add('active');
+        }
     });
 
-    // 5. Show target section instantly
+    // SPA switch
+    document.querySelectorAll('.spa-section').forEach(s => {
+        s.classList.remove('active');
+        s.style.display = 'none';
+    });
+
     const target = document.getElementById(targetId);
     if (target) {
         target.style.display = 'block';
-        setTimeout(() => {
-            target.classList.add('active');
-        }, 10);
+        setTimeout(() => target.classList.add('active'), 10);
     }
 
-    // 6. Force scroll to top
     window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeSuccessModal() {
     document.getElementById('success-modal').classList.remove('active');
-    navigateTo('home');
 }
