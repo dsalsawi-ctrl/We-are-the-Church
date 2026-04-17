@@ -1,7 +1,7 @@
 :root {
-    --bone: #F7F5F0;     /* The warm heritage background */
-    --charcoal: #1C1B1A; /* Deep, grounded black */
-    --gold: #C29B57;     /* High-end burnished gold accent */
+    --bone: #F7F5F0;
+    --charcoal: #1C1B1A;
+    --gold: #C29B57;
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -25,7 +25,7 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
 .desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 1px solid var(--gold); padding-bottom: 4px; }
 .mobile-ui-btn { display: none; background: none; border: none; cursor: pointer; color: var(--charcoal); }
 
-/* MOBILE MENU "LIFE" - Dark Mode Immersion */
+/* MOBILE MENU "LIFE" */
 .mobile-nav-overlay {
     position: fixed; inset: 0; background: rgba(28, 27, 26, 0.98); 
     backdrop-filter: blur(25px); z-index: 9999;
@@ -48,8 +48,7 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
     background: linear-gradient(90deg, var(--bone) 25%, rgba(247,245,240,0) 100%);
 }
 .hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
-.massive-title { font-size: clamp(4.5rem, 8vw, 8rem); line-height: 0.85; margin-bottom: 25px; }
-.hero-desc { font-size: clamp(1.05rem, 1.5vw, 1.25rem); max-width: 480px; line-height: 1.8; font-weight: 300; }
+.hero-desc { text-shadow: 0 2px 15px rgba(247,245,240,0.8); } /* Subtle glow to ensure readability */
 .cta-platinum { background: var(--charcoal); color: var(--bone); padding: 24px 48px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
 
 @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
@@ -67,9 +66,7 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
     position: absolute; left: 0; top: 12px; color: #999; font-size: 15px;
     pointer-events: none; transition: all 0.3s var(--ease); font-weight: 300;
 }
-.input-row input:focus, .input-row textarea:focus, .input-row select:focus {
-    border-bottom-color: var(--gold);
-}
+.input-row input:focus, .input-row textarea:focus, .input-row select:focus { border-bottom-color: var(--gold); }
 .input-row input:focus ~ label, .input-row input:not(:placeholder-shown) ~ label,
 .input-row textarea:focus ~ label, .input-row textarea:not(:placeholder-shown) ~ label,
 .select-row select:valid ~ label, .select-row select:focus ~ label {
@@ -99,20 +96,48 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
 .fade-in-el { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .fade-in-el.visible { opacity: 1; transform: translateY(0); }
 
-/* MOBILE RESPONSIVE OVERHAUL - THUMB FIRST */
+/* MOBILE RESPONSIVE OVERHAUL */
 @media (max-width: 1024px) {
     .desktop-menu { display: none; }
     .mobile-ui-btn { display: block; }
     
-    .hero-box { display: flex; flex-direction: column; justify-content: flex-end; height: 100dvh; background: var(--bone); }
-    .hero-image { position: absolute; top: 0; height: 60vh; width: 100%; z-index: 1; background-position: center 20%; animation: none; }
+    /* Flow hero elements naturally, move text *below* image */
+    .hero-box { 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: flex-start; 
+        height: auto; 
+        min-height: 100dvh; 
+        background: var(--bone); 
+        padding-top: 90px; /* Make space for navbar */
+    }
     
-    /* Elegant fade into the bottom text */
-    .hero-vignette { background: linear-gradient(180deg, rgba(247,245,240,0) 0%, rgba(247,245,240,0) 45%, rgba(247,245,240,1) 60%); }
+    .hero-image { 
+        position: relative; 
+        top: 0; 
+        height: auto; 
+        aspect-ratio: 4/3; /* Keeps full image visible and well-proportioned */
+        width: 100%; 
+        z-index: 1; 
+        background-position: center; 
+        animation: none; 
+        transform: none;
+    }
     
-    .hero-content { padding: 0 30px 120px 30px; text-align: left; }
-    .massive-title { font-size: 4.2rem; line-height: 0.9; margin-bottom: 15px; }
-    .hero-desc { font-size: 1rem; color: #555; }
+    .hero-vignette { display: none; /* Removed so photo is clear */ }
+    
+    .hero-content { 
+        padding: 40px 30px 120px 30px; /* Extra bottom padding for sticky mobile CTA */
+        text-align: center; 
+    }
+    
+    .hero-desc { 
+        font-size: 1.4rem; 
+        color: var(--charcoal); 
+        line-height: 1.5; 
+        text-shadow: none;
+    }
+    
     nav { padding: 25px 0; }
     .nav-container { padding: 0 25px; }
 }
