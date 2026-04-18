@@ -48,7 +48,7 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
     background: linear-gradient(90deg, var(--bone) 25%, rgba(247,245,240,0) 100%);
 }
 .hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
-.hero-desc { text-shadow: 0 2px 15px rgba(247,245,240,0.8); } /* Subtle glow to ensure readability */
+.hero-desc { text-shadow: 0 2px 15px rgba(247,245,240,0.8); }
 .cta-platinum { background: var(--charcoal); color: var(--bone); padding: 24px 48px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
 
 @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
@@ -75,11 +75,39 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
 }
 
 /* THE SECRET TABLE (DARK MODE INPUTS) */
-.dark-mode-input input, .dark-mode-input select { color: var(--bone) !important; border-bottom-color: #333 !important; }
+.dark-mode-input input, 
+.dark-mode-input textarea, 
+.dark-mode-input select { 
+    color: var(--bone) !important; 
+    border-bottom-color: #333 !important; 
+}
 .dark-mode-input label { color: #666 !important; }
-.dark-mode-input input:focus, .dark-mode-input select:focus { border-bottom-color: var(--gold) !important; }
-.dark-mode-input input:focus ~ label, .dark-mode-input input:not(:placeholder-shown) ~ label,
-.dark-mode-input select:valid ~ label, .dark-mode-input select:focus ~ label { color: var(--gold) !important; }
+.dark-mode-input input:focus, 
+.dark-mode-input textarea:focus, 
+.dark-mode-input select:focus { 
+    border-bottom-color: var(--gold) !important; 
+}
+.dark-mode-input input:focus ~ label, 
+.dark-mode-input input:not(:placeholder-shown) ~ label,
+.dark-mode-input textarea:focus ~ label,
+.dark-mode-input textarea:not(:placeholder-shown) ~ label,
+.dark-mode-input select:valid ~ label, 
+.dark-mode-input select:focus ~ label { 
+    color: var(--gold) !important; 
+}
+
+/* Isolated Dropdown Fix */
+.dark-mode-input select {
+    background-color: transparent !important;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.dark-mode-input select option {
+    background-color: var(--charcoal);
+    color: var(--bone);
+}
 
 .form-submit-btn {
     width: 100%; padding: 24px; font-size: 11px;
@@ -112,7 +140,6 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
         padding-top: 90px;
     }
     
-    /* UPDATED: Added a slow zoom and a faded mask edge so it blends into the text */
     .hero-image { 
         position: relative; 
         top: 0; 
@@ -129,7 +156,6 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
     
     .hero-vignette { display: none; }
     
-    /* UPDATED: Pulled text up slightly with negative margin to tuck into the fade */
     .hero-content { 
         padding: 10px 30px 120px 30px; 
         text-align: center; 
