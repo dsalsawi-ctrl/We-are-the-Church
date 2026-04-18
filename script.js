@@ -1,4 +1,4 @@
-// 1. CONFIGURATION - Dual URLs
+// 1. YOUR CONFIGURATION
 const DATASHEET_URL = 'https://script.google.com/macros/s/AKfycbwfa_F3nty9-MQkwx5a_KATGUMqU6Jt7XfPhyhwh10WoaLSxu4FbKEkG08z213fkyt6/exec';
 const EMAIL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby30vjHLoj3iM7AwwNy_BUgYHzCwLvpfae6n3yGs21zp9HlFk1Z0bKBU-r-j6pG6b7Pbg/exec';
 
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // 2. Initialize Lucide Icons
+    // 2. Initialize Icons
     lucide.createIcons();
 
-    // 3. Scroll Effects
+    // 3. Scroll & Reveal Effects
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(nav) nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // 4. Mobile Menu
+    // 4. Mobile Menu Controls
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const mobileOverlay = document.getElementById('mobile-overlay');
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if(menuBtn) menuBtn.onclick = () => mobileOverlay.classList.add('open');
     if(closeBtn) closeBtn.onclick = () => mobileOverlay.classList.remove('open');
 
-    // 5. FORM SUBMISSIONS LOGIC
+    // 5. FORM SUBMISSIONS
     
-    // FORM 1: Join Gathering (Sends to Google Sheet)
+    // Join Gathering Form (Sends to Datasheet)
     const joinForm = document.getElementById('platinumJoinForm');
     if(joinForm) {
         joinForm.onsubmit = async (e) => {
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // FORM 2: Reach Out (Sends Email to watc.global7@gmail.com)
+    // Reach Out / Contact Form (Sends to Email)
     const contactForm = document.getElementById('contactForm');
     if(contactForm) {
         contactForm.onsubmit = async (e) => {
@@ -72,33 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Universal Form Handler
+ * Handles the submission for any form on the site
  */
 async function handleFormSubmit(form, typeLabel, targetUrl) {
     const btn = form.querySelector('button');
     const originalText = btn.innerText;
     
+    // Visual Feedback
     btn.innerText = "SENDING...";
     btn.disabled = true;
 
     try {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        data.submissionType = typeLabel; // Helps identify which form was used
+        
+        // Add metadata for the script
+        data.submissionType = typeLabel;
 
+        // Send to the specified Google Script URL
         await fetch(targetUrl, { 
             method: 'POST', 
             mode: 'no-cors', 
             body: JSON.stringify(data) 
         });
 
-        // Show Success Feedback
-        const modal = document.getElementById('success-modal');
-        if(modal) modal.classList.add('active');
+        // Show Success Modal
+        const successModal = document.getElementById('success-modal');
+        if(successModal) successModal.classList.add('active');
+        
         form.reset();
         
     } catch (err) { 
-        console.error("Error:", err);
+        console.error("Submission error:", err);
         btn.innerText = "RETRY"; 
     } finally {
         setTimeout(() => {
@@ -109,23 +114,23 @@ async function handleFormSubmit(form, typeLabel, targetUrl) {
 }
 
 /**
- * SPA Navigation
+ * SPA Navigation Logic
  */
 function navigateTo(targetId, navElement = null) {
-    // Close mobile menu if open
+    // Close mobile menu
     const mobileOverlay = document.getElementById('mobile-overlay');
     if(mobileOverlay) mobileOverlay.classList.remove('open');
 
-    // Hide Mobile Sticky CTA if they are on the 'join' section
+    // Hide Mobile Sticky CTA if they are on the Join page
     const stickyCta = document.getElementById('mobile-sticky-cta');
     if (stickyCta) {
         stickyCta.style.display = (targetId === 'join') ? 'none' : 'block';
     }
 
-    // Nav Active State
+    // Update Desktop Nav Active States
     const navButtons = document.querySelectorAll('.desktop-menu .nav-btn');
     navButtons.forEach(btn => btn.classList.remove('active'));
-    
+
     if (navElement && navElement.classList.contains('nav-btn')) {
         navElement.classList.add('active');
     } else {
@@ -136,23 +141,26 @@ function navigateTo(targetId, navElement = null) {
         });
     }
 
-    // Section Switching
+    // Hide all sections
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
     });
 
+    // Show target section
     const target = document.getElementById(targetId);
     if (target) {
         target.style.display = 'block';
-        setTimeout(() => { target.classList.add('active'); }, 10);
+        setTimeout(() => {
+            target.classList.add('active');
+        }, 10);
     }
 
     window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeSuccessModal() {
-    const modal = document.getElementById('success-modal');
-    if(modal) modal.classList.remove('active');
+    const successModal = document.getElementById('success-modal');
+    if(successModal) successModal.classList.remove('active');
     navigateTo('home');
 }
