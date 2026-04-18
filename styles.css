@@ -1,162 +1,224 @@
 :root {
     --bone: #F7F5F0;
     --charcoal: #1C1B1A;
-    --gold: #D4AF37; 
-    --platinum-grey: #A0A0A0; 
+    --gold: #D4AF37; /* Upgraded Platinum Gold */
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bone); color: var(--charcoal); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background: var(--bone); 
-    color: var(--charcoal); 
-    overflow-x: hidden; 
-    -webkit-font-smoothing: antialiased; 
-}
+/* TYPOGRAPHY OVERRIDE */
+.font-serif { font-family: 'EB Garamond', serif !important; }
 
 /* --- THE PLATINUM LOGO --- */
-/* High-end tracking and ultra-lightweight pairing */
-nav .logo span.font-serif { 
-    font-family: 'Inter', sans-serif !important; 
+.platinum-logo-main {
+    font-family: 'Inter', sans-serif; 
     font-weight: 100 !important; 
-    letter-spacing: 0.5em; /* Increased for premium 'air' */
-    font-size: 0.95rem; 
+    letter-spacing: 0.4em; 
+    font-size: 1rem; 
     text-transform: uppercase;
     color: var(--charcoal);
     display: block;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Subtle gold underline hint */
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
     padding-bottom: 4px;
 }
 
-nav .logo span.text-gray-500 {
-    font-family: 'EB Garamond', serif !important;
+.platinum-logo-sub {
+    font-family: 'EB Garamond', serif;
     font-style: italic;
-    text-transform: none !important;
     letter-spacing: 0.15em;
     font-size: 11px;
-    color: var(--gold); /* Switched to gold for branding pop */
+    color: var(--gold); 
     margin-top: 6px;
-    opacity: 0.8;
+    display: block;
 }
 
-/* --- TYPOGRAPHY SYSTEM --- */
-.font-serif { font-family: 'EB Garamond', serif; }
+/* SPA ENGINE */
+.spa-section { display: none; min-height: 100vh; width: 100%; }
+.spa-section.active { display: block; animation: sectionFade 0.7s var(--ease); }
+@keyframes sectionFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+/* NAVIGATION */
+nav { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 35px 0; transition: 0.5s var(--ease); }
+nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; padding: 0 40px; align-items: center; }
+.desktop-menu .nav-btn { margin-left: 45px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em; font-weight: 700; color: #888; transition: color 0.3s ease; background: none; border: none; cursor: pointer;}
+.desktop-menu .nav-btn:hover { color: var(--gold); }
+.desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 1px solid var(--gold); padding-bottom: 4px; }
+.mobile-ui-btn { display: none; background: none; border: none; cursor: pointer; color: var(--charcoal); }
+
+/* MOBILE MENU "LIFE" */
+.mobile-nav-overlay {
+    position: fixed; inset: 0; background: rgba(28, 27, 26, 0.98); 
+    backdrop-filter: blur(25px); z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transform: translateY(-100%); transition: 0.7s var(--ease);
+}
+.mobile-nav-overlay.open { transform: translateY(0); }
+.close-ui-btn { position: absolute; top: 40px; right: 40px; color: var(--bone); background: transparent; border: none; cursor: pointer; }
+.mobile-nav-content button {
+    display: block; font-size: 14px; font-weight: 800; letter-spacing: 0.5em;
+    margin: 25px auto; color: var(--gold); text-transform: uppercase; transition: color 0.3s ease; background: none; border: none;
+}
+.mobile-nav-content button:active, .mobile-nav-content button:hover { color: var(--bone); }
+
+/* VISION SECTION - UNIVERSAL LAYOUT */
+.hero-box { height: 100vh; height: 100dvh; position: relative; display: flex; align-items: center; overflow: hidden; background: var(--bone); }
+.hero-image { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; transform: scale(1.05); animation: slowZoom 25s ease-out infinite alternate; }
+.hero-vignette { 
+    position: absolute; inset: 0; z-index: 2; 
+    background: linear-gradient(90deg, var(--bone) 25%, rgba(247,245,240,0) 100%);
+}
+.hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
+
+/* HERO TEXT PLATINUM OVERRIDE */
 .hero-desc { 
     font-family: 'EB Garamond', serif !important;
     font-weight: 400;
     font-style: italic;
-    line-height: 1.5;
     color: var(--charcoal);
-    font-size: 4.2rem; /* Increased for desktop impact */
+    font-size: 4rem; 
+    line-height: 1.4;
     max-width: 1000px;
-    letter-spacing: -0.02em;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-shadow: 0 2px 15px rgba(247,245,240,0.8); 
 }
 
-/* --- NAVIGATION REFINEMENT --- */
-nav { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 40px 0; transition: 0.6s var(--ease); }
-nav.scrolled { 
-    background: rgba(247, 245, 240, 0.98); 
-    backdrop-filter: blur(30px); 
-    padding: 18px 0; 
-    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+.cta-platinum { background: var(--charcoal); color: var(--bone); padding: 24px 48px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
+
+@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes slowZoomMobile { from { transform: scale(1.0); } to { transform: scale(1.06); } }
+
+/* FORM "LIFE" & FLOATING LABELS */
+.input-row { position: relative; width: 100%; }
+.input-row input, .input-row textarea, .input-row select {
+    width: 100%; padding: 12px 0; font-size: 15px; color: var(--charcoal);
+    background: transparent; border: none; border-bottom: 1px solid #D1CDC4;
+    outline: none; transition: all 0.3s var(--ease); box-shadow: none; border-radius: 0;
+    -webkit-appearance: none;
+}
+.input-row textarea { resize: none; }
+.input-row label {
+    position: absolute; left: 0; top: 12px; color: #999; font-size: 15px;
+    pointer-events: none; transition: all 0.3s var(--ease); font-weight: 300;
+}
+.input-row input:focus, .input-row textarea:focus, .input-row select:focus { border-bottom-color: var(--gold); }
+.input-row input:focus ~ label, .input-row input:not(:placeholder-shown) ~ label,
+.input-row textarea:focus ~ label, .input-row textarea:not(:placeholder-shown) ~ label,
+.select-row select:valid ~ label, .select-row select:focus ~ label {
+    top: -16px; font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
 }
 
-.desktop-menu .nav-btn { 
-    margin-left: 50px; 
-    font-size: 9px; 
-    text-transform: uppercase; 
-    letter-spacing: 0.4em; 
-    font-weight: 700; 
-    color: #999; 
-    background: none;
-    border: none;
+/* THE SECRET TABLE (DARK MODE INPUTS) */
+.dark-mode-input input, 
+.dark-mode-input textarea, 
+.dark-mode-input select { 
+    color: var(--bone) !important; 
+    border-bottom-color: #333 !important; 
+}
+.dark-mode-input label { color: #666 !important; }
+.dark-mode-input input:focus, 
+.dark-mode-input textarea:focus, 
+.dark-mode-input select:focus { 
+    border-bottom-color: var(--gold) !important; 
+}
+.dark-mode-input input:focus ~ label, 
+.dark-mode-input input:not(:placeholder-shown) ~ label,
+.dark-mode-input textarea:focus ~ label,
+.dark-mode-input textarea:not(:placeholder-shown) ~ label,
+.dark-mode-input select:valid ~ label, 
+.dark-mode-input select:focus ~ label { 
+    color: var(--gold) !important; 
+}
+
+.dark-mode-input select {
+    background-color: transparent !important;
+    appearance: none;
+    -webkit-appearance: none;
     cursor: pointer;
-    transition: all 0.4s ease; 
-}
-.desktop-menu .nav-btn:hover { color: var(--gold); transform: translateY(-1px); }
-.desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 2px solid var(--gold); padding-bottom: 8px; }
-
-/* --- HERO & ATMOSPHERE --- */
-.hero-box { 
-    height: 100vh; 
-    height: 100dvh; 
-    position: relative; 
-    display: flex; 
-    align-items: center; 
-    overflow: hidden; 
-    background: var(--bone); 
 }
 
-/* Adds a subtle grain texture to the hero for that 'Platinum' film look */
-.hero-box::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity: 0.05;
-    z-index: 4;
-    pointer-events: none;
+.dark-mode-input select option {
+    background-color: var(--charcoal);
+    color: var(--bone);
 }
 
-.hero-image { 
-    position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; 
-    animation: slowZoom 30s var(--ease) infinite alternate; 
+.form-submit-btn {
+    width: 100%; padding: 24px; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none;
+    cursor: pointer; transition: background 0.4s var(--ease), color 0.4s;
 }
 
-.hero-vignette { 
-    position: absolute; inset: 0; z-index: 2; 
-    background: linear-gradient(90deg, var(--bone) 15%, rgba(247,245,240,0) 100%);
-}
+/* HOUSE CARDS */
+.house-card { padding: 45px 40px; background: white; border: 1px solid #EBE7E0; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+.house-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: var(--gold); }
+.house-card button { background: none; border: none; color: var(--charcoal); transition: color 0.3s, border-color 0.3s; cursor: pointer;}
+.house-card:hover button { color: var(--gold); border-color: var(--gold); }
 
-.hero-content { position: relative; z-index: 5; max-width: 1400px; margin: auto; width: 100%; padding: 0 60px; }
+/* SCROLL FADE IN UTILITY */
+.fade-in-el { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.fade-in-el.visible { opacity: 1; transform: translateY(0); }
 
-/* --- MOBILE RESPONSIVE PLATINUM OVERHAUL --- */
+/* MOBILE RESPONSIVE OVERHAUL */
 @media (max-width: 1024px) {
-    nav { padding: 25px 0; }
+    .desktop-menu { display: none; }
+    .mobile-ui-btn { display: block; }
     
     .hero-box { 
+        display: flex; 
         flex-direction: column; 
         justify-content: flex-start; 
-        padding-top: 100px;
+        height: auto; 
+        min-height: 100dvh; 
+        background: var(--bone); 
+        padding-top: 90px;
     }
     
     .hero-image { 
-        height: 40vh; 
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+        position: relative; 
+        top: 0; 
+        height: auto; 
+        aspect-ratio: 4/3; 
+        width: 100%; 
+        z-index: 1; 
+        background-position: center; 
+        background-size: cover;
+        animation: slowZoomMobile 20s ease-in-out infinite alternate;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
     }
     
+    .hero-vignette { display: none; }
+    
     .hero-content { 
-        padding: 40px 30px; 
-        margin-top: -10px;
+        padding: 10px 30px 120px 30px; 
+        text-align: center; 
+        position: relative;
+        z-index: 2;
+        margin-top: -30px; 
     }
     
     .hero-desc { 
-        font-size: 2.4rem !important; /* Larger for mobile impact */
-        line-height: 1.35;
-        letter-spacing: -0.01em;
+        font-size: 2.2rem !important; /* Fixed massive mobile size */
+        color: var(--charcoal); 
+        line-height: 1.4; 
+        text-shadow: none;
     }
 
-    nav .logo span.font-serif {
+    .platinum-logo-main {
         font-size: 0.85rem;
-        letter-spacing: 0.4em;
+        letter-spacing: 0.3em;
     }
+    
+    nav { padding: 25px 0; }
+    .nav-container { padding: 0 25px; }
 }
 
-/* --- SPA & UTILITIES --- */
-.spa-section { display: none; min-height: 100vh; width: 100%; }
-.spa-section.active { display: block; animation: sectionFade 0.8s var(--ease); }
-
-@keyframes sectionFade { 
-    from { opacity: 0; transform: translateY(15px); } 
-    to { opacity: 1; transform: translateY(0); } 
+/* THE GHOST MODAL KILLER */
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
+    z-index: 99999; display: none; align-items: center; justify-content: center; 
+    opacity: 0; transition: opacity 0.4s var(--ease);
 }
-
-@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.12); } }
-
-.fade-in-el { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
-.fade-in-el.visible { opacity: 1; transform: translateY(0); }
+.modal-overlay.active { display: flex; opacity: 1; }
+.success-card { position: relative; z-index: 100000; }
