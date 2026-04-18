@@ -52,6 +52,7 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
 .cta-platinum { background: var(--charcoal); color: var(--bone); padding: 24px 48px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none; cursor: pointer; }
 
 @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes slowZoomMobile { from { transform: scale(1.0); } to { transform: scale(1.06); } }
 
 /* FORM "LIFE" & FLOATING LABELS */
 .input-row { position: relative; width: 100%; }
@@ -101,7 +102,6 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
     .desktop-menu { display: none; }
     .mobile-ui-btn { display: block; }
     
-    /* Flow hero elements naturally, move text *below* image */
     .hero-box { 
         display: flex; 
         flex-direction: column; 
@@ -109,26 +109,33 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
         height: auto; 
         min-height: 100dvh; 
         background: var(--bone); 
-        padding-top: 90px; /* Make space for navbar */
+        padding-top: 90px;
     }
     
+    /* UPDATED: Added a slow zoom and a faded mask edge so it blends into the text */
     .hero-image { 
         position: relative; 
         top: 0; 
         height: auto; 
-        aspect-ratio: 4/3; /* Keeps full image visible and well-proportioned */
+        aspect-ratio: 4/3; 
         width: 100%; 
         z-index: 1; 
         background-position: center; 
-        animation: none; 
-        transform: none;
+        background-size: cover;
+        animation: slowZoomMobile 20s ease-in-out infinite alternate;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
     }
     
-    .hero-vignette { display: none; /* Removed so photo is clear */ }
+    .hero-vignette { display: none; }
     
+    /* UPDATED: Pulled text up slightly with negative margin to tuck into the fade */
     .hero-content { 
-        padding: 40px 30px 120px 30px; /* Extra bottom padding for sticky mobile CTA */
+        padding: 10px 30px 120px 30px; 
         text-align: center; 
+        position: relative;
+        z-index: 2;
+        margin-top: -30px; 
     }
     
     .hero-desc { 
