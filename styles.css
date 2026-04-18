@@ -1,12 +1,13 @@
 :root {
     --bone: #F7F5F0;
     --charcoal: #1C1B1A;
-    --gold: #D4AF37; /* Richer Platinum Gold */
+    --gold: #D4AF37; 
     --platinum-grey: #A0A0A0; 
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body { 
     font-family: 'Inter', sans-serif; 
     background: var(--bone); 
@@ -15,184 +16,147 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-/* --- TYPOGRAPHY SYSTEM --- */
-.font-serif { font-family: 'EB Garamond', serif; }
-
-/* LOGO REFINEMENT */
+/* --- THE PLATINUM LOGO --- */
+/* High-end tracking and ultra-lightweight pairing */
 nav .logo span.font-serif { 
     font-family: 'Inter', sans-serif !important; 
     font-weight: 100 !important; 
-    letter-spacing: 0.35em; 
-    font-size: 1.1rem; 
+    letter-spacing: 0.5em; /* Increased for premium 'air' */
+    font-size: 0.95rem; 
     text-transform: uppercase;
+    color: var(--charcoal);
+    display: block;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Subtle gold underline hint */
+    padding-bottom: 4px;
 }
 
 nav .logo span.text-gray-500 {
     font-family: 'EB Garamond', serif !important;
     font-style: italic;
     text-transform: none !important;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     font-size: 11px;
-    color: var(--platinum-grey);
-    margin-top: 2px;
+    color: var(--gold); /* Switched to gold for branding pop */
+    margin-top: 6px;
+    opacity: 0.8;
 }
 
-/* --- SPA ENGINE --- */
-.spa-section { display: none; min-height: 100vh; width: 100%; }
-.spa-section.active { display: block; animation: sectionFade 0.7s var(--ease); }
-@keyframes sectionFade { 
-    from { opacity: 0; transform: translateY(10px); } 
-    to { opacity: 1; transform: translateY(0); } 
-}
-
-/* --- NAVIGATION --- */
-nav { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 35px 0; transition: 0.5s var(--ease); }
-nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px); padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
-.nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; padding: 0 40px; align-items: center; }
-
-.desktop-menu .nav-btn { 
-    margin-left: 45px; 
-    font-size: 10px; 
-    text-transform: uppercase; 
-    letter-spacing: 0.3em; 
-    font-weight: 700; 
-    color: #888; 
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s ease; 
-}
-.desktop-menu .nav-btn:hover { color: var(--gold); }
-.desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 1px solid var(--gold); padding-bottom: 4px; }
-.mobile-ui-btn { display: none; background: none; border: none; cursor: pointer; color: var(--charcoal); }
-
-/* MOBILE MENU OVERLAY */
-.mobile-nav-overlay {
-    position: fixed; inset: 0; background: rgba(28, 27, 26, 0.98); 
-    backdrop-filter: blur(25px); z-index: 9999;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    transform: translateY(-100%); transition: 0.7s var(--ease);
-}
-.mobile-nav-overlay.open { transform: translateY(0); }
-.close-ui-btn { position: absolute; top: 40px; right: 40px; color: var(--bone); background: transparent; border: none; cursor: pointer; }
-.mobile-nav-content button {
-    display: block; font-size: 14px; font-weight: 800; letter-spacing: 0.5em;
-    margin: 25px auto; color: var(--gold); text-transform: uppercase; transition: color 0.3s ease;
-    background: none; border: none;
-}
-
-/* --- VISION SECTION (HERO) --- */
-.hero-box { height: 100vh; height: 100dvh; position: relative; display: flex; align-items: center; overflow: hidden; background: var(--bone); }
-.hero-image { 
-    position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; 
-    animation: slowZoom 25s ease-out infinite alternate; 
-}
-.hero-vignette { 
-    position: absolute; inset: 0; z-index: 2; 
-    background: linear-gradient(90deg, var(--bone) 20%, rgba(247,245,240,0) 100%);
-}
-.hero-content { position: relative; z-index: 3; max-width: 1400px; margin: auto; width: 100%; padding: 0 50px; }
+/* --- TYPOGRAPHY SYSTEM --- */
+.font-serif { font-family: 'EB Garamond', serif; }
 
 .hero-desc { 
     font-family: 'EB Garamond', serif !important;
     font-weight: 400;
     font-style: italic;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--charcoal);
-    font-size: 3.8rem; /* Desktop Scale */
-    max-width: 900px;
-    text-shadow: 0 1px 5px rgba(247,245,240,0.5);
+    font-size: 4.2rem; /* Increased for desktop impact */
+    max-width: 1000px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.cta-platinum { 
-    background: var(--charcoal); color: var(--bone); padding: 24px 48px; 
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.4em; 
-    font-weight: 800; border: none; cursor: pointer; 
+/* --- NAVIGATION REFINEMENT --- */
+nav { position: fixed; width: 100%; top: 0; z-index: 1000; padding: 40px 0; transition: 0.6s var(--ease); }
+nav.scrolled { 
+    background: rgba(247, 245, 240, 0.98); 
+    backdrop-filter: blur(30px); 
+    padding: 18px 0; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
 }
 
-@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-/* --- FORMS & INPUTS --- */
-.input-row { position: relative; width: 100%; }
-.input-row input, .input-row textarea, .input-row select {
-    width: 100%; padding: 12px 0; font-size: 15px; color: var(--charcoal);
-    background: transparent; border: none; border-bottom: 1px solid #D1CDC4;
-    outline: none; transition: all 0.3s var(--ease); border-radius: 0;
+.desktop-menu .nav-btn { 
+    margin-left: 50px; 
+    font-size: 9px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.4em; 
+    font-weight: 700; 
+    color: #999; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease; 
 }
-.input-row label {
-    position: absolute; left: 0; top: 12px; color: #999; font-size: 15px;
-    pointer-events: none; transition: all 0.3s var(--ease); font-weight: 300;
-}
-.input-row input:focus ~ label, .input-row input:not(:placeholder-shown) ~ label,
-.input-row textarea:focus ~ label, .input-row textarea:not(:placeholder-shown) ~ label,
-.select-row select:valid ~ label, .select-row select:focus ~ label {
-    top: -16px; font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
-}
+.desktop-menu .nav-btn:hover { color: var(--gold); transform: translateY(-1px); }
+.desktop-menu .nav-btn.active { color: var(--charcoal); border-bottom: 2px solid var(--gold); padding-bottom: 8px; }
 
-/* DARK MODE FORM (The Secret Table) */
-.dark-mode-input input, .dark-mode-input textarea, .dark-mode-input select { color: var(--bone) !important; border-bottom-color: #333 !important; }
-.dark-mode-input label { color: #666 !important; }
-.dark-mode-input input:focus ~ label, .dark-mode-input select:focus ~ label { color: var(--gold) !important; }
-
-.form-submit-btn {
-    width: 100%; padding: 24px; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none;
-    cursor: pointer; transition: 0.4s var(--ease);
+/* --- HERO & ATMOSPHERE --- */
+.hero-box { 
+    height: 100vh; 
+    height: 100dvh; 
+    position: relative; 
+    display: flex; 
+    align-items: center; 
+    overflow: hidden; 
+    background: var(--bone); 
 }
 
-/* HOUSE CARDS */
-.house-card { padding: 45px 40px; background: white; border: 1px solid #EBE7E0; transition: 0.4s var(--ease); }
-.house-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: var(--gold); }
-.house-card h3 { font-family: 'EB Garamond', serif; }
+/* Adds a subtle grain texture to the hero for that 'Platinum' film look */
+.hero-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.05;
+    z-index: 4;
+    pointer-events: none;
+}
 
-/* UTILITIES */
-.fade-in-el { opacity: 0; transform: translateY(20px); transition: 0.8s var(--ease); }
-.fade-in-el.visible { opacity: 1; transform: translateY(0); }
+.hero-image { 
+    position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; 
+    animation: slowZoom 30s var(--ease) infinite alternate; 
+}
+
+.hero-vignette { 
+    position: absolute; inset: 0; z-index: 2; 
+    background: linear-gradient(90deg, var(--bone) 15%, rgba(247,245,240,0) 100%);
+}
+
+.hero-content { position: relative; z-index: 5; max-width: 1400px; margin: auto; width: 100%; padding: 0 60px; }
 
 /* --- MOBILE RESPONSIVE PLATINUM OVERHAUL --- */
 @media (max-width: 1024px) {
-    .desktop-menu { display: none; }
-    .mobile-ui-btn { display: block; }
+    nav { padding: 25px 0; }
     
     .hero-box { 
         flex-direction: column; 
         justify-content: flex-start; 
-        height: auto; 
-        min-height: 100dvh; 
-        padding-top: 80px;
+        padding-top: 100px;
     }
     
     .hero-image { 
-        position: relative; 
-        height: 45vh; 
-        width: 100%; 
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+        height: 40vh; 
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
     }
     
-    .hero-vignette { display: none; }
-    
     .hero-content { 
-        padding: 40px 25px 100px 25px; 
-        text-align: center; 
-        margin-top: -20px;
+        padding: 40px 30px; 
+        margin-top: -10px;
     }
     
     .hero-desc { 
-        font-size: 2.1rem !important; /* Massive Platinum impact on mobile */
-        line-height: 1.4;
-        max-width: 100%;
-        text-shadow: none;
+        font-size: 2.4rem !important; /* Larger for mobile impact */
+        line-height: 1.35;
+        letter-spacing: -0.01em;
     }
-    
-    nav { padding: 20px 0; }
-    .nav-container { padding: 0 20px; }
+
+    nav .logo span.font-serif {
+        font-size: 0.85rem;
+        letter-spacing: 0.4em;
+    }
 }
 
-/* MODALS */
-.modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
-    z-index: 99999; display: none; align-items: center; justify-content: center; 
-    opacity: 0; transition: 0.4s var(--ease);
+/* --- SPA & UTILITIES --- */
+.spa-section { display: none; min-height: 100vh; width: 100%; }
+.spa-section.active { display: block; animation: sectionFade 0.8s var(--ease); }
+
+@keyframes sectionFade { 
+    from { opacity: 0; transform: translateY(15px); } 
+    to { opacity: 1; transform: translateY(0); } 
 }
-.modal-overlay.active { display: flex; opacity: 1; }
+
+@keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+
+.fade-in-el { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
+.fade-in-el.visible { opacity: 1; transform: translateY(0); }
