@@ -1,4 +1,6 @@
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwfa_F3nty9-MQkwx5a_KATGUMqU6Jt7XfPhyhwh10WoaLSxu4FbKEkG08z213fkyt6/exec';
+// 1. CONFIGURATION - Dual URLs
+const DATASHEET_URL = 'https://script.google.com/macros/s/AKfycbwfa_F3nty9-MQkwx5a_KATGUMqU6Jt7XfPhyhwh10WoaLSxu4FbKEkG08z213fkyt6/exec';
+const EMAIL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby30vjHLoj3iM7AwwNy_BUgYHzCwLvpfae6n3yGs21zp9HlFk1Z0bKBU-r-j6pG6b7Pbg/exec';
 
 const houseData = [
     { neighborhood: 'Bole Atlas', time: 'Fridays, 6:30 PM' },
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Initialize Lucide Icons
     lucide.createIcons();
 
-    // 3. Scroll & Reveal Effects
+    // 3. Scroll Effects
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(nav) nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // 4. Mobile Menu Controls
+    // 4. Mobile Menu
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const mobileOverlay = document.getElementById('mobile-overlay');
@@ -48,63 +50,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if(menuBtn) menuBtn.onclick = () => mobileOverlay.classList.add('open');
     if(closeBtn) closeBtn.onclick = () => mobileOverlay.classList.remove('open');
 
-    // 5. FORM SUBMISSIONS SETUP
+    // 5. FORM SUBMISSIONS LOGIC
     
-    // Form A: Join Gathering (Request Invitation)
+    // FORM 1: Join Gathering (Sends to Google Sheet)
     const joinForm = document.getElementById('platinumJoinForm');
     if(joinForm) {
         joinForm.onsubmit = async (e) => {
             e.preventDefault();
-            handleFormSubmit(joinForm, "Gathering Request");
+            handleFormSubmit(joinForm, "Gathering Request", DATASHEET_URL);
         };
     }
 
-    // Form B: Reach Out (Contact Form)
+    // FORM 2: Reach Out (Sends Email to watc.global7@gmail.com)
     const contactForm = document.getElementById('contactForm');
     if(contactForm) {
         contactForm.onsubmit = async (e) => {
             e.preventDefault();
-            handleFormSubmit(contactForm, "General Inquiry");
+            handleFormSubmit(contactForm, "General Inquiry", EMAIL_SCRIPT_URL);
         };
     }
 });
 
 /**
- * Centralized logic to handle all form submissions
+ * Universal Form Handler
  */
-async function handleFormSubmit(form, typeLabel) {
+async function handleFormSubmit(form, typeLabel, targetUrl) {
     const btn = form.querySelector('button');
     const originalText = btn.innerText;
     
-    // Visual Feedback
     btn.innerText = "SENDING...";
     btn.disabled = true;
 
     try {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        
-        // Include which form this came from for your email subject line
-        data.submissionType = typeLabel;
+        data.submissionType = typeLabel; // Helps identify which form was used
 
-        // Post to Google Apps Script
-        await fetch(GOOGLE_SCRIPT_URL, { 
+        await fetch(targetUrl, { 
             method: 'POST', 
             mode: 'no-cors', 
             body: JSON.stringify(data) 
         });
 
-        // Trigger the Success UI
-        const successModal = document.getElementById('success-modal');
-        if(successModal) successModal.classList.add('active');
-        
+        // Show Success Feedback
+        const modal = document.getElementById('success-modal');
+        if(modal) modal.classList.add('active');
         form.reset();
         
     } catch (err) { 
-        console.error("Submission error:", err);
+        console.error("Error:", err);
         btn.innerText = "RETRY"; 
     } finally {
-        // Reset button state after a small delay
         setTimeout(() => {
             btn.disabled = false;
             btn.innerText = originalText;
@@ -113,27 +109,26 @@ async function handleFormSubmit(form, typeLabel) {
 }
 
 /**
- * Single Page Application Navigation
+ * SPA Navigation
  */
 function navigateTo(targetId, navElement = null) {
-    // 1. Close mobile menu
+    // Close mobile menu if open
     const mobileOverlay = document.getElementById('mobile-overlay');
     if(mobileOverlay) mobileOverlay.classList.remove('open');
 
-    // 2. Hide Mobile Sticky CTA on the 'join' page
+    // Hide Mobile Sticky CTA if they are on the 'join' section
     const stickyCta = document.getElementById('mobile-sticky-cta');
     if (stickyCta) {
         stickyCta.style.display = (targetId === 'join') ? 'none' : 'block';
     }
 
-    // 3. Update Desktop Navigation Active States
+    // Nav Active State
     const navButtons = document.querySelectorAll('.desktop-menu .nav-btn');
     navButtons.forEach(btn => btn.classList.remove('active'));
     
     if (navElement && navElement.classList.contains('nav-btn')) {
         navElement.classList.add('active');
     } else {
-        // Find button by text if triggered via inline onclick
         navButtons.forEach(btn => {
             if(btn.innerText.toLowerCase().includes(targetId) || (targetId === 'home' && btn.innerText.includes('Vision'))) {
                 btn.classList.add('active');
@@ -141,7 +136,7 @@ function navigateTo(targetId, navElement = null) {
         });
     }
 
-    // 4. Switch visible sections
+    // Section Switching
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
@@ -153,12 +148,11 @@ function navigateTo(targetId, navElement = null) {
         setTimeout(() => { target.classList.add('active'); }, 10);
     }
 
-    // 5. Scroll to top instantly
     window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 function closeSuccessModal() {
-    const successModal = document.getElementById('success-modal');
-    if(successModal) successModal.classList.remove('active');
+    const modal = document.getElementById('success-modal');
+    if(modal) modal.classList.remove('active');
     navigateTo('home');
 }
