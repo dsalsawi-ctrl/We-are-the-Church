@@ -18,50 +18,65 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="house-card fade-in-el" style="transition-delay: ${i * 100}ms">
                 <h3 class="font-serif text-3xl mb-2 text-[var(--charcoal)]">${h.neighborhood}</h3>
                 <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
-                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors">Request Invitation</button>
+                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Join Gathering</button>
             </div>
         `).join('');
     }
 
     // 2. Initialize Lucide Icons
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
+    lucide.createIcons();
 
-    // 3. Scroll Animation Logic
+    // 3. Scroll Effects
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in-el').forEach(el => observer.observe(el));
 
-    // 4. Form Submissions
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if(nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // 4. Mobile Menu
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+
+    if(menuBtn) menuBtn.onclick = () => mobileOverlay.classList.add('open');
+    if(closeBtn) closeBtn.onclick = () => mobileOverlay.classList.remove('open');
+
+    // 5. FORM SUBMISSIONS LOGIC
+    
+    // FORM 1: Join Gathering (Sends to Google Sheet)
+    const joinForm = document.getElementById('platinumJoinForm');
+    if(joinForm) {
+        joinForm.onsubmit = async (e) => {
+            e.preventDefault();
+            handleFormSubmit(joinForm, "Gathering Request", DATASHEET_URL);
+        };
+    }
+
+    // FORM 2: Reach Out (Sends Email to watc.global7@gmail.com)
     const contactForm = document.getElementById('contactForm');
     if(contactForm) {
-        contactForm.onsubmit = (e) => {
+        contactForm.onsubmit = async (e) => {
             e.preventDefault();
             handleFormSubmit(contactForm, "General Inquiry", EMAIL_SCRIPT_URL);
         };
     }
-
-    const joinForm = document.getElementById('platinumJoinForm');
-    if(joinForm) {
-        joinForm.onsubmit = (e) => {
-            e.preventDefault();
-            handleFormSubmit(joinForm, "Join Gathering", DATASHEET_URL);
-        };
-    }
 });
 
+/**
+ * Universal Form Handler
+ */
 async function handleFormSubmit(form, typeLabel, targetUrl) {
     const btn = form.querySelector('button');
     const originalText = btn.innerText;
-    
-    // Get modal elements for dynamic text
-    const modalTitle = document.querySelector('#success-modal h3');
-    const modalText = document.querySelector('#success-modal p');
     
     btn.innerText = "SENDING...";
     btn.disabled = true;
@@ -69,24 +84,15 @@ async function handleFormSubmit(form, typeLabel, targetUrl) {
     try {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        data.submissionType = typeLabel;
+        data.submissionType = typeLabel; // Helps identify which form was used
 
-        // Submission via POST
         await fetch(targetUrl, { 
             method: 'POST', 
             mode: 'no-cors', 
             body: JSON.stringify(data) 
         });
 
-        // Set text based on which form was used
-        if (typeLabel === "General Inquiry") {
-            modalTitle.innerText = "Message Sent";
-            modalText.innerText = "Thank you for your inquiry. We will contact you soon—please make sure to check your email.";
-        } else {
-            modalTitle.innerText = "Welcome Home";
-            modalText.innerText = "Your seat at the table is reserved. A house church leader will reach out to you shortly with the exact location and details.";
-        }
-
+        // Show Success Feedback
         const modal = document.getElementById('success-modal');
         if(modal) modal.classList.add('active');
         form.reset();
@@ -102,18 +108,21 @@ async function handleFormSubmit(form, typeLabel, targetUrl) {
     }
 }
 
+/**
+ * SPA Navigation
+ */
 function navigateTo(targetId, navElement = null) {
-    // 1. Close mobile menu if open
+    // Close mobile menu if open
     const mobileOverlay = document.getElementById('mobile-overlay');
     if(mobileOverlay) mobileOverlay.classList.remove('open');
 
-    // 2. Hide Mobile Sticky CTA on the 'join' section
+    // Hide Mobile Sticky CTA if they are on the 'join' section
     const stickyCta = document.getElementById('mobile-sticky-cta');
     if (stickyCta) {
         stickyCta.style.display = (targetId === 'join') ? 'none' : 'block';
     }
 
-    // 3. Nav Active State
+    // Nav Active State
     const navButtons = document.querySelectorAll('.desktop-menu .nav-btn');
     navButtons.forEach(btn => btn.classList.remove('active'));
     
@@ -127,7 +136,7 @@ function navigateTo(targetId, navElement = null) {
         });
     }
 
-    // 4. Section Switching
+    // Section Switching
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none'; 
@@ -145,4 +154,5 @@ function navigateTo(targetId, navElement = null) {
 function closeSuccessModal() {
     const modal = document.getElementById('success-modal');
     if(modal) modal.classList.remove('active');
+    navigateTo('home');
 }
