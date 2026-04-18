@@ -81,6 +81,29 @@ nav.scrolled { background: rgba(247, 245, 240, 0.95); backdrop-filter: blur(20px
 .dark-mode-input input:focus ~ label, .dark-mode-input input:not(:placeholder-shown) ~ label,
 .dark-mode-input select:valid ~ label, .dark-mode-input select:focus ~ label { color: var(--gold) !important; }
 
+.dark-mode-input {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--bone);
+    width: 100%;
+    padding: 15px;
+    font-size: 0.9rem;
+    transition: all 0.3s var(--ease);
+}
+
+
+.dark-mode-input select {
+    background-color: transparent !important;
+    color: var(--bone) !important;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.dark-mode-input select option {
+    background-color: var(--charcoal);
+    color: var(--bone);
+}
 .form-submit-btn {
     width: 100%; padding: 24px; font-size: 11px;
     text-transform: uppercase; letter-spacing: 0.4em; font-weight: 800; border: none;
