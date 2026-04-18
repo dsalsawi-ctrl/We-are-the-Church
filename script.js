@@ -94,6 +94,18 @@ async function handleFormSubmit(form, typeLabel, targetUrl) {
 
         // Show Success Feedback
         const modal = document.getElementById('success-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        // Dynamically change the text based on which form was submitted
+        if (typeLabel === "General Inquiry") {
+            if (modalTitle) modalTitle.innerText = "Message Sent";
+            if (modalDesc) modalDesc.innerText = "Thanks for reaching out! We’ll be in touch soon. Keep an eye on your inbox for an email from us.";
+        } else {
+            if (modalTitle) modalTitle.innerText = "Welcome Home";
+            if (modalDesc) modalDesc.innerText = "Your seat at the table is reserved. A host will contact you soon.";
+        }
+
         if(modal) modal.classList.add('active');
         form.reset();
         
