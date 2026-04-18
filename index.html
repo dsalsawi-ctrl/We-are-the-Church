@@ -117,20 +117,21 @@
                         </p>
                     </div>
                 </div>
-                <div class="bg-[var(--bone)] p-12 border border-[#E5E0D8]">
-                  <form class="space-y-10">
-                      <div class="input-row">
-                        <input type="email" id="contactEmail" required placeholder=" ">
-                        <label for="contactEmail">Email Address</label>
-                      </div>
-                      <div class="input-row">
-                        <textarea id="contactMessage" rows="4" required placeholder=" "></textarea>
-                        <label for="contactMessage">Your Message</label>
-                      </div>
-                      <button class="text-[11px] font-bold tracking-[.3em] uppercase border-b-2 border-[var(--charcoal)] pb-2 hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors duration-300">Send Message</button>
-                  </form>
-                </div>
-            </div>
+               <div class="bg-[var(--bone)] p-12 border border-[#E5E0D8]">
+  <form id="contactForm" class="space-y-10">
+    <div class="input-row">
+      <input type="email" name="email" id="contactEmail" required placeholder=" ">
+      <label for="contactEmail">Email Address</label>
+    </div>
+    <div class="input-row">
+      <textarea name="message" id="contactMessage" rows="4" required placeholder=" "></textarea>
+      <label for="contactMessage">Your Message</label>
+    </div>
+    <button type="submit" class="text-[11px] font-bold tracking-[.3em] uppercase border-b-2 border-[var(--charcoal)] pb-2 hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors duration-300">
+      Send Message
+    </button>
+  </form>
+</div>            </div>
         </div>
     </section>
   </main>
