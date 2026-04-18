@@ -10,48 +10,26 @@ const houseData = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Reveal body after load
     document.body.classList.remove('loading');
 
     const grid = document.getElementById('house-grid');
     if(grid) {
         grid.innerHTML = houseData.map((h, i) => `
-            <div class="house-card fade-in-el" style="transition-delay: ${i * 100}ms">
-                <h3 class="font-serif text-3xl mb-2 text-[var(--charcoal)]">${h.neighborhood}</h3>
+            <div class="p-10 bg-white border border-[#EBE7E0] fade-in-el" style="transition-delay: ${i * 100}ms">
+                <h3 class="font-serif text-3xl mb-2">${h.neighborhood}</h3>
                 <p class="text-gray-500 text-sm mb-8 font-light">${h.time}</p>
-                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-[var(--charcoal)] pb-1">Join Gathering</button>
+                <button onclick="navigateTo('join')" class="text-[10px] font-bold uppercase tracking-[.2em] border-b border-black pb-1">Join Gathering</button>
             </div>
         `).join('');
     }
 
     lucide.createIcons();
 
-    // Scroll Observer for high-end reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.fade-in-el, .hero-content').forEach(el => observer.observe(el));
-
-    // Navbar & Parallax Hero Logic
     window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
-        const scroll = window.scrollY;
-        
-        if(nav) nav.classList.toggle('scrolled', scroll > 50);
-
-        // Subtle Parallax for Hero Image
-        const heroImg = document.querySelector('.hero-image');
-        if(heroImg && scroll < 800) {
-            heroImg.style.transform = `scale(1.1) translateY(${scroll * 0.15}px)`;
-        }
+        if(nav) nav.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile Menu
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const mobileOverlay = document.getElementById('mobile-overlay');
@@ -81,17 +59,6 @@ async function handleFormSubmit(form, typeLabel, targetUrl) {
         await fetch(targetUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
 
         const modal = document.getElementById('success-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
-
-        if (typeLabel === "General Inquiry") {
-            modalTitle.innerText = "Message Sent";
-            modalDesc.innerText = "Thanks for reaching out! We’ll be in touch soon.";
-        } else {
-            modalTitle.innerText = "Welcome Home";
-            modalDesc.innerText = "Your seat at the table is reserved. A host will contact you soon.";
-        }
-
         modal.classList.add('active');
         form.reset();
     } catch (err) { 
@@ -110,10 +77,7 @@ function navigateTo(targetId, navElement = null) {
 
     const navButtons = document.querySelectorAll('.desktop-menu .nav-btn');
     navButtons.forEach(btn => btn.classList.remove('active'));
-    
-    if (navElement) {
-        navElement.classList.add('active');
-    }
+    if (navElement) navElement.classList.add('active');
 
     document.querySelectorAll('.spa-section').forEach(s => {
         s.classList.remove('active');
